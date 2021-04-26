@@ -1,0 +1,99 @@
+//////////////////////////////
+////////////COLORS////////////
+//////////////////////////////
+
+$light: #F5F5F5;
+$medium: #414242;
+$dark: #1D2224;
+
+
+$blue: #0097E2;
+$green: #00A14C;
+$gold: #CF9808;
+$orange: #F04600;
+
+//////////////////////////////
+/////////////SPACES///////////
+//////////////////////////////
+
+$spaces: (
+	"xs": .25rem,
+	"sm": .5rem,
+	"md": 1rem,
+	"lg": 1.5rem,
+	"xl": 2rem,
+);
+
+@mixin spaceClass($p, $property, $s, $side, $size, $space) {
+	.#{$p}#{$s}-#{$size} {
+		#{$property}-#{$side}: $space;
+	}
+}
+
+//////////////////////////////
+//////////FONT SIZES//////////
+//////////////////////////////
+
+$base-fs: 18px;
+$xs-fs: .65rem; //16px
+$sm-fs: .85rem; //16px
+$md-fs: 1.35rem; //24px
+$lg-fs: 1.55rem; //28px
+$xl-fs: 2.55rem; //46px
+
+@mixin base-text {
+	font-size: $base-fs;
+	line-height: 1.2em;
+}
+
+@mixin xs-text {
+	font-size: $xs-fs;
+	line-height: 1.2em;
+}
+
+@mixin sm-text {
+	font-size: $sm-fs;
+	line-height: 1.2em;
+}
+
+@mixin md-text {
+	font-size: $md-fs;
+	line-height: 1.2em;
+}
+
+@mixin lg-text {
+	font-size: $lg-fs;
+	line-height: 1.2em;
+}
+
+@mixin xl-text {
+	font-size: $xl-fs;
+	line-height: 1.2em;
+}
+
+@mixin caps-text {
+	letter-spacing: .2em;
+	text-transform: uppercase;
+}
+
+//////////////////////////////
+////////MEDIA QUERIES/////////
+//////////////////////////////
+
+@mixin large {
+	@media only screen and (max-width: 1200px) {
+	  @content;
+	}
+}
+
+@mixin medium {
+	@media only screen and (max-width: 950px) {
+	  @content;
+	}
+}
+
+@mixin small {
+	@media only screen and (max-width: 548px) {
+	  @content;
+	}
+}

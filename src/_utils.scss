@@ -1,0 +1,48 @@
+@use "vars" as *;
+@use "sass:list";
+
+.xs-text {
+	@include xs-text;
+}
+.sm-text {
+	@include sm-text;
+}
+.md-text {
+	@include md-text;
+}
+.lg-text {
+	@include lg-text;
+}
+.xl-text {
+	@include xl-text;
+}
+
+.caps-text {
+	@include caps-text;
+	font-weight: 500;
+}
+
+.blue-text, .blue-text:hover, .blue-text:focus, .blue-text:visited {
+	color: $blue !important;
+}
+
+.white-text, .white-text:hover, .white-text:focus, .white-text:visited {
+	color: white !important;
+}
+
+.light-bg {
+	background-color: $light !important;
+	padding: .3rem .5rem .25rem .5rem;
+	display: table;
+}
+
+.blue-bg {
+	background-color: $blue !important;
+}
+
+@each $size, $space in $spaces {
+	@include spaceClass("m", "margin", "t", "top", $size, $space);
+	@include spaceClass("m", "margin", "b", "bottom", $size, $space);
+	@include spaceClass("p", "padding", "t", "top", $size, $space);
+	@include spaceClass("p", "padding", "b", "bottom", $size, $space);
+}

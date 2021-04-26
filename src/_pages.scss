@@ -1,0 +1,153 @@
+@use "vars" as *;
+@use "sass:list";
+
+
+#cover {
+	width: 100%;
+	min-height: calc(100vh - 8.5rem);
+	display: flex;
+	.highlight-text {
+		height: 100%;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: flex-end;
+		div {
+			max-width: 40rem;
+			margin: auto 5rem auto auto;
+			padding-top: 5rem;
+		}
+		p {
+			display: inline;
+			background-color: white;
+			color: $blue;
+			font-size: $xl-fs;
+			line-height: 1.3em;
+		}
+	}
+}
+#cover-image {
+	width: 100%;
+	height: calc(100vh - 8.5rem);
+	position: absolute;
+	display: flex;
+	flex-direction: row;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+#cover-card {
+	width: 100%;
+	padding-top: 10rem;
+  margin-top: auto;
+  .row {
+		justify-content: center;
+  }
+}
+#cover-header {
+	padding: 1rem;
+	background-color: rgba(white, .9);
+}
+#cover-content {
+	padding: 1rem;
+	background-color: white;
+	// display: none;
+	// overflow-y: hidden;
+	// .expand-cover & {
+	// 	display: block;
+	// }
+}
+// #cover-toggle {
+// 	width: 100%;
+// 	height: 2rem;
+// 	margin-top: 1rem;
+// 	background-size: 2rem;
+// 	background-position: center bottom;
+// 	background-repeat: no-repeat;
+// 	background-image: url(images/down-arrow.svg);
+// 	.expand-cover & {
+// 		transform: rotate(180deg);
+// 	}
+// 	&:hover {
+// 		cursor: pointer;
+// 	}
+// }
+
+/*****************************
+*************ABOUT************
+*****************************/
+
+.container#funders {
+	.row {
+		justify-content: center;
+	}
+	.thumb-image {
+		background-color: white;
+		background-size: contain;
+	}
+}
+
+.container#pov {
+	.row {
+		justify-content: center;
+		align-content: space-between;
+	}
+}
+
+.col-quote {
+	margin: 0 auto;
+	padding-left: 3.5rem;
+	blockquote {
+		font-weight: 800;
+		position: relative;
+		&::before, &::after {
+			content: "";
+			width: 2rem;
+			height: 2rem;
+			position: absolute;
+			background-size: contain;
+			background-position: center;
+			background-repeat: no-repeat;
+		}
+		&::before {
+			left: -2.5rem;
+	    top: -.5rem;
+			background-image: url(images/quote-l.svg);
+		}
+		&::after {
+			display: inline-block;
+			margin-left: .5rem;
+			background-image: url(images/quote-r.svg);
+		}
+	}
+}
+
+
+/*****************************
+*******LEARNING TOGETHER******
+*****************************/
+
+nav#nav-page {
+	margin: 2rem 0;
+	ul {
+		justify-content: center;
+	}
+	li {
+		margin-right: 2rem;
+		&:last-child {
+			margin-right: 0;
+		}
+	}
+	a {
+		padding: 2px .8em 2px 2px;
+		background-size: auto .8em;
+		background-position: right center;
+		background-repeat: no-repeat;
+		background-image: url(images/right-arrow-blue.svg);
+		@include xs-text;
+		&, &:focus, &:hover, &:visited {
+			color: $blue;
+		}
+	}
+}
