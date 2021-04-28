@@ -8,7 +8,7 @@ $story = get_field( 'local_story', $project );
 ?>
 
 
-<?php get_template_part( 'parts/loop', 'projects', array(
+<?php get_template_part( 'parts/loop', 'project', array(
 	'title' => pll__( 'Projects' ),
 	'story' => $story
 ) ); ?>

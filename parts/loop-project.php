@@ -10,7 +10,7 @@
 				
 				<div class="thumb col col-12 col-md-6 col-lg-4">
 
-					<a href="<?= get_permalink( $project ); ?>">
+					<a href="<?= get_permalink( $project ); ?>" class="thumb-link-wrapper">
 
 						<div class="thumb-image" <?= post_bg( $project ) ?>></div>
 

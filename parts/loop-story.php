@@ -27,7 +27,7 @@ if( $stories ) { ?>
 				
 				<div class="thumb col col-12 col-md-6 col-lg-4">
 
-					<a href="<?= $url ?>">
+					<a href="<?= $url ?>" class="thumb-link-wrapper">
 
 						<div class="thumb-image" <?= post_bg( $story ); ?>></div>
 

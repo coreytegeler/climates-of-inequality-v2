@@ -1,26 +1,31 @@
 .xs-text {
-  font-size: 0.65rem;
+  font-size: 0.68rem;
   line-height: 1.2em;
+  font-weight: 400;
 }
 
 .sm-text {
-  font-size: 0.85rem;
+  font-size: 0.88rem;
   line-height: 1.2em;
+  font-weight: 200;
 }
 
 .md-text {
   font-size: 1.35rem;
   line-height: 1.2em;
+  font-weight: 200;
 }
 
 .lg-text {
   font-size: 1.55rem;
   line-height: 1.2em;
+  font-weight: 200;
 }
 
 .xl-text {
   font-size: 2.55rem;
   line-height: 1.2em;
+  font-weight: 200;
 }
 
 .caps-text {
@@ -55,12 +60,28 @@
   margin-bottom: 0.25rem;
 }
 
+.mr-xs {
+  margin-right: 0.25rem;
+}
+
+.ml-xs {
+  margin-left: 0.25rem;
+}
+
 .pt-xs {
   padding-top: 0.25rem;
 }
 
 .pb-xs {
   padding-bottom: 0.25rem;
+}
+
+.pr-xs {
+  padding-right: 0.25rem;
+}
+
+.pl-xs {
+  padding-left: 0.25rem;
 }
 
 .mt-sm {
@@ -71,12 +92,28 @@
   margin-bottom: 0.5rem;
 }
 
+.mr-sm {
+  margin-right: 0.5rem;
+}
+
+.ml-sm {
+  margin-left: 0.5rem;
+}
+
 .pt-sm {
   padding-top: 0.5rem;
 }
 
 .pb-sm {
   padding-bottom: 0.5rem;
+}
+
+.pr-sm {
+  padding-right: 0.5rem;
+}
+
+.pl-sm {
+  padding-left: 0.5rem;
 }
 
 .mt-md {
@@ -87,12 +124,28 @@
   margin-bottom: 1rem;
 }
 
+.mr-md {
+  margin-right: 1rem;
+}
+
+.ml-md {
+  margin-left: 1rem;
+}
+
 .pt-md {
   padding-top: 1rem;
 }
 
 .pb-md {
   padding-bottom: 1rem;
+}
+
+.pr-md {
+  padding-right: 1rem;
+}
+
+.pl-md {
+  padding-left: 1rem;
 }
 
 .mt-lg {
@@ -103,12 +156,28 @@
   margin-bottom: 1.5rem;
 }
 
+.mr-lg {
+  margin-right: 1.5rem;
+}
+
+.ml-lg {
+  margin-left: 1.5rem;
+}
+
 .pt-lg {
   padding-top: 1.5rem;
 }
 
 .pb-lg {
   padding-bottom: 1.5rem;
+}
+
+.pr-lg {
+  padding-right: 1.5rem;
+}
+
+.pl-lg {
+  padding-left: 1.5rem;
 }
 
 .mt-xl {
@@ -119,6 +188,14 @@
   margin-bottom: 2rem;
 }
 
+.mr-xl {
+  margin-right: 2rem;
+}
+
+.ml-xl {
+  margin-left: 2rem;
+}
+
 .pt-xl {
   padding-top: 2rem;
 }
@@ -127,8 +204,228 @@
   padding-bottom: 2rem;
 }
 
+.pr-xl {
+  padding-right: 2rem;
+}
+
+.pl-xl {
+  padding-left: 2rem;
+}
+
+.mt-xxl {
+  margin-top: 4rem;
+}
+
+.mb-xxl {
+  margin-bottom: 4rem;
+}
+
+.mr-xxl {
+  margin-right: 4rem;
+}
+
+.ml-xxl {
+  margin-left: 4rem;
+}
+
+.pt-xxl {
+  padding-top: 4rem;
+}
+
+.pb-xxl {
+  padding-bottom: 4rem;
+}
+
+.pr-xxl {
+  padding-right: 4rem;
+}
+
+.pl-xxl {
+  padding-left: 4rem;
+}
+
+/*****************************
+************BUTTONS***********
+*****************************/
+a.arrow-link, .arrow-link {
+  display: inline;
+  padding: 2px 0.8em 2px 2px;
+  background-size: auto 0.8em;
+  background-position: right center;
+  background-repeat: no-repeat;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='5' height='10' viewBox='0 0 5 10'%3e %3cg id='Group_542' data-name='Group 542' transform='translate(-870.5 -3257.5)'%3e %3cpath id='Polygon_2' data-name='Polygon 2' d='M5,0l5,5H0Z' transform='translate(875.5 3257.5) rotate(90)' fill='%230097e2'/%3e %3c/g%3e %3c/svg%3e");
+  color: #0097E2;
+  font-size: 0.88rem;
+  line-height: 1.2em;
+  font-weight: 200;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+a.arrow-link, a.arrow-link:focus, a.arrow-link:hover, a.arrow-link:visited, .arrow-link, .arrow-link:focus, .arrow-link:hover, .arrow-link:visited {
+  color: #0097E2;
+}
+
+button, .button, .button:hover, .button:focus, .button:visited {
+  display: table;
+  padding: 1rem;
+  margin: 0;
+  background-color: #0097E2;
+  color: white;
+  text-align: center;
+  font-weight: 500;
+  border: none;
+  font-size: 0.68rem;
+  line-height: 1.2em;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+form button {
+  width: 100%;
+}
+
+/*****************************
+************SELECT************
+*****************************/
+.select-dropdown {
+  width: 100%;
+  position: relative;
+  margin: 0 0.25em;
+}
+.select-dropdown label {
+  width: 100%;
+  height: 100%;
+  padding: 0.5rem 2rem 0.5rem 0.5rem;
+  margin: 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: #1D2224;
+  color: white;
+  font-weight: 500;
+  font-size: 0.88rem;
+  line-height: 1.2em;
+  font-weight: 200;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 500;
+  pointer-events: none;
+}
+.select-dropdown label::after {
+  content: "";
+  width: 2rem;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-size: 0.5rem;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='10' height='5' viewBox='0 0 10 5'%3e %3cpath id='Polygon_1' data-name='Polygon 1' d='M5,0l5,5H0Z' transform='translate(10 5) rotate(180)' fill='%23fff'/%3e %3c/svg%3e");
+}
+.select-dropdown select {
+  width: 100%;
+  padding: 0.5rem;
+  background-color: #1D2224;
+  color: white;
+  cursor: pointer;
+  font-size: 0.88rem;
+  line-height: 1.2em;
+  font-weight: 200;
+}
+.select-dropdown:first-child {
+  margin-left: 0.5rem;
+}
+.select-dropdown:last-child {
+  margin-right: 0.5rem;
+}
+
+/*****************************
+************FILTER************
+*****************************/
+#loop-filter {
+  display: flex;
+  justify-content: center;
+  align-content: space-evenly;
+  margin-bottom: 4rem;
+}
+
+#filter-notice[aria-hidden=true] {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#filter-reset {
+  display: table;
+  float: right;
+  cursor: pointer;
+}
+
+#loop {
+  transition: opacity 500ms ease-in-out;
+}
+#loop.loading {
+  opacity: 0.25;
+}
+
+/*****************************
+***********SLIDESHOW**********
+*****************************/
+#slideshow {
+  position: relative;
+  margin-bottom: 3rem;
+}
+
+.slideshow-arrow {
+  width: 2rem;
+  height: 2rem;
+  position: absolute;
+  top: calc(50% - 1rem);
+  background-size: auto 1.5rem;
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+.slideshow-arrow[data-direction=prev] {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='19.3' height='32.5' viewBox='0 0 19.3 32.5'%3e %3cpath id='Path_347' data-name='Path 347' d='M29.6,19.3,16.3,5.7,2.8,19,0,16.1,16.4,0,32.5,16.5l-2.9,2.8Z' transform='translate(0 32.5) rotate(-90)' fill='%231d2224'/%3e %3c/svg%3e");
+  left: -3rem;
+}
+.slideshow-arrow[data-direction=next] {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='19.3' height='32.5' viewBox='0 0 19.3 32.5'%3e %3cpath id='Path_346' data-name='Path 346' d='M29.6,0,16.3,13.6,2.8.3,0,3.2,16.4,19.3,32.5,2.8,29.6,0Z' transform='translate(0 32.5) rotate(-90)' fill='%231d2224'/%3e %3c/svg%3e");
+  right: -3rem;
+}
+
+#slides-wrapper {
+  position: relative;
+}
+
+.slide {
+  display: none;
+}
+.slide figure {
+  margin: 0;
+}
+.slide.media figcaption {
+  display: none;
+}
+.slide.media img {
+  width: 100%;
+}
+.slide.caption {
+  margin-top: 0.5rem;
+  font-size: 0.68rem;
+  line-height: 1.2em;
+  font-weight: 400;
+}
+.slide.active {
+  display: block;
+}
+
 header#main-header {
-  height: 8.5rem;
+  height: 6.5rem;
   position: relative;
 }
 header#main-header a, header#main-header a:hover, header#main-header a:focus {
@@ -136,21 +433,24 @@ header#main-header a, header#main-header a:hover, header#main-header a:focus {
   text-decoration: none;
 }
 header#main-header .container {
-  padding-top: 2rem;
-  padding-bottom: 2rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 #header-title {
   margin-bottom: 0.25rem;
   font-size: 2.55rem;
   line-height: 1.2em;
+  font-weight: 200;
 }
 
 #header-tagline {
-  font-size: 0.85rem;
-  line-height: 1.2em;
   letter-spacing: 0.2em;
   text-transform: uppercase;
+  font-weight: 500;
+  font-size: 0.88rem;
+  line-height: 1.2em;
+  font-weight: 200;
 }
 
 #header-icons {
@@ -167,8 +467,6 @@ header#main-header .container {
 
 nav {
   font-weight: 500;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
 }
 nav ul {
   width: 100%;
@@ -181,8 +479,9 @@ nav ul {
 nav li.menu-item {
   flex: 1;
   margin-right: 1px;
-  font-size: 0.85rem;
+  font-size: 0.88rem;
   line-height: 1.2em;
+  font-weight: 200;
 }
 nav li.menu-item.current a, nav li.menu-item.current a:visited {
   background: #0097E2;
@@ -199,6 +498,9 @@ nav li.menu-item a {
   background: rgba(245, 245, 245, 0.9);
   color: #1D2224;
   text-align: center;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 500;
 }
 nav li.menu-item a:hover, nav li.menu-item a:focus {
   background: #0097E2;
@@ -228,8 +530,9 @@ nav#sub-nav li {
 
 #cover {
   width: 100%;
-  min-height: calc(100vh - 8.5rem);
+  min-height: calc(100vh - 6.5rem);
   display: flex;
+  position: relative;
 }
 #cover .highlight-text {
   height: 100%;
@@ -246,17 +549,18 @@ nav#sub-nav li {
 #cover .highlight-text p {
   display: inline;
   background-color: white;
+  box-shadow: 10px 0 0 white, -10px 0 0 white;
   color: #0097E2;
   font-size: 2.55rem;
+  line-height: 1.2em;
+  font-weight: 200;
   line-height: 1.3em;
 }
 
 #cover-image {
-  width: 100%;
-  height: calc(100vh - 8.5rem);
+  width: 100vw;
+  height: calc(100vh - 6.5rem);
   position: absolute;
-  display: flex;
-  flex-direction: row;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -270,14 +574,20 @@ nav#sub-nav li {
 #cover-card .row {
   justify-content: center;
 }
+.single-happening #cover-card {
+  padding-top: calc(50vh);
+}
 
 #cover-header {
-  padding: 1rem;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin-bottom: 1rem;
   background-color: rgba(255, 255, 255, 0.9);
 }
 
 #cover-content {
-  padding: 1rem;
+  padding-top: 15px;
+  padding-bottom: 15px;
   background-color: white;
 }
 
@@ -340,18 +650,6 @@ nav#nav-page li {
 nav#nav-page li:last-child {
   margin-right: 0;
 }
-nav#nav-page a {
-  padding: 2px 0.8em 2px 2px;
-  background-size: auto 0.8em;
-  background-position: right center;
-  background-repeat: no-repeat;
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='5' height='10' viewBox='0 0 5 10'%3e %3cg id='Group_542' data-name='Group 542' transform='translate(-870.5 -3257.5)'%3e %3cpath id='Polygon_2' data-name='Polygon 2' d='M5,0l5,5H0Z' transform='translate(875.5 3257.5) rotate(90)' fill='%230097e2'/%3e %3c/g%3e %3c/svg%3e");
-  font-size: 0.65rem;
-  line-height: 1.2em;
-}
-nav#nav-page a, nav#nav-page a:focus, nav#nav-page a:hover, nav#nav-page a:visited {
-  color: #0097E2;
-}
 
 /*****************************
 ************GLOBAL************
@@ -368,6 +666,7 @@ html {
   color: #1D2224;
   font-size: 18px;
   line-height: 1.2em;
+  font-weight: 400;
 }
 
 html[lang] {
@@ -397,10 +696,12 @@ h1 {
   margin: 2rem 0;
   text-align: center;
   font-weight: 500;
-  font-size: 0.85rem;
+  font-size: 0.88rem;
   line-height: 1.2em;
+  font-weight: 200;
   letter-spacing: 0.2em;
   text-transform: uppercase;
+  font-weight: 500;
 }
 
 h2 {
@@ -408,6 +709,7 @@ h2 {
   font-weight: 200;
   font-size: 2.55rem;
   line-height: 1.2em;
+  font-weight: 200;
 }
 
 h3 {
@@ -415,6 +717,7 @@ h3 {
   font-weight: 200;
   font-size: 1.55rem;
   line-height: 1.2em;
+  font-weight: 200;
 }
 
 h4 {
@@ -422,19 +725,22 @@ h4 {
   margin: 0;
   padding: 2rem 0;
   text-align: center;
-  font-weight: 500;
-  font-size: 0.85rem;
+  font-size: 0.88rem;
   line-height: 1.2em;
+  font-weight: 200;
   letter-spacing: 0.2em;
   text-transform: uppercase;
+  font-weight: 500;
 }
 
 h5 {
   font-weight: 500;
-  font-size: 0.65rem;
+  font-size: 0.68rem;
   line-height: 1.2em;
+  font-weight: 400;
   letter-spacing: 0.2em;
   text-transform: uppercase;
+  font-weight: 500;
 }
 
 a, a:hover, a:focus, a:visited {
@@ -442,23 +748,9 @@ a, a:hover, a:focus, a:visited {
   text-decoration: none;
 }
 
-button, .button, .button:hover, .button:focus, .button:visited {
-  display: table;
-  padding: 1rem;
-  margin: 0;
-  background-color: #0097E2;
-  color: white;
-  text-align: center;
-  font-weight: 500;
-  border: none;
-  font-size: 0.65rem;
-  line-height: 1.2em;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-}
-
-form button {
-  width: 100%;
+.container {
+  max-width: 1920px !important;
+  padding: 0 3rem;
 }
 
 /*****************************
@@ -469,7 +761,8 @@ form button {
   flex-direction: column;
   margin: 0 0 4rem 0;
 }
-.thumb a {
+
+a.thumb-link-wrapper {
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -477,6 +770,7 @@ form button {
 
 .thumb-image {
   width: 100%;
+  height: auto;
   padding: 0 0 60% 0;
   margin: 0 0 auto 0;
   background-color: #F5F5F5;
@@ -498,9 +792,9 @@ form button {
 }
 
 .thumb-title {
-  font-weight: 200;
   font-size: 1.55rem;
   line-height: 1.2em;
+  font-weight: 200;
 }
 
 .thumb-subtitle {
@@ -529,6 +823,7 @@ form button {
 .card-title {
   font-size: 1.55rem;
   line-height: 1.2em;
+  font-weight: 200;
   padding: 0 4rem 0.25rem 0;
   color: #1D2224;
 }
@@ -588,10 +883,12 @@ form button {
   bottom: 0;
   color: #1D2224;
   font-weight: 500;
-  font-size: 0.65rem;
+  font-size: 0.68rem;
   line-height: 1.2em;
+  font-weight: 400;
   letter-spacing: 0.2em;
   text-transform: uppercase;
+  font-weight: 500;
 }
 .square-text span {
   padding: 0.25rem;

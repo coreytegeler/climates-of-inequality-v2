@@ -19,7 +19,6 @@
 
 .caps-text {
 	@include caps-text;
-	font-weight: 500;
 }
 
 .blue-text, .blue-text:hover, .blue-text:focus, .blue-text:visited {
@@ -43,6 +42,10 @@
 @each $size, $space in $spaces {
 	@include spaceClass("m", "margin", "t", "top", $size, $space);
 	@include spaceClass("m", "margin", "b", "bottom", $size, $space);
+	@include spaceClass("m", "margin", "r", "right", $size, $space);
+	@include spaceClass("m", "margin", "l", "left", $size, $space);
 	@include spaceClass("p", "padding", "t", "top", $size, $space);
 	@include spaceClass("p", "padding", "b", "bottom", $size, $space);
+	@include spaceClass("p", "padding", "r", "right", $size, $space);
+	@include spaceClass("p", "padding", "l", "left", $size, $space);
 }

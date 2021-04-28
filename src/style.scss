@@ -1,5 +1,6 @@
 @use "vars" as *;
 @use "utils";
+@use "components";
 @use "header";
 @use "pages";
 @use "sass:list";
@@ -71,7 +72,6 @@ h4 {
 	margin: 0;
 	padding: 2rem 0;
 	text-align: center;
-	font-weight: 500;
 	@include sm-text;
 	@include caps-text;
 }
@@ -87,21 +87,11 @@ a, a:hover, a:focus, a:visited {
 	text-decoration: none;
 }
 
-button, .button, .button:hover, .button:focus, .button:visited {
-	display: table;
-	padding: 1rem;
-	margin: 0;
-	background-color: $blue;
-	color: white;
-	text-align: center;
-	font-weight: 500;
-	border: none;
-	@include xs-text;
-	@include caps-text;
+.container {
+	max-width: 1920px !important;
+	padding: 0 3rem;
 }
-form button {
-	width: 100%;
-}
+
 
 /*****************************
 ************THUMBS************
@@ -111,15 +101,17 @@ form button {
 	display: flex;
 	flex-direction: column;
 	margin: 0 0 4rem 0;
-	a {
-		height: 100%;
-		display: flex;
-		flex-direction: column;
-	}
+}
+
+a.thumb-link-wrapper {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
 }
 
 .thumb-image {
 	width: 100%;
+	height: auto;
 	padding: 0 0 60% 0;
 	margin: 0 0 auto 0;
 	background-color: $light;
@@ -141,7 +133,6 @@ form button {
 }
 
 .thumb-title {
-	font-weight: 200;
 	@include lg-text;
 }
 

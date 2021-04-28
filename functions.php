@@ -25,6 +25,20 @@ function coi_scripts() {
 
 	wp_enqueue_style( 'coi-style', $style_path, array(), $ver );
 	wp_enqueue_script( 'coi-script', $script_path, array(), $ver, true );
+
+	wp_scripts()->add_data( 'coi-script', 'data', sprintf( 'var settings = %s;', wp_json_encode( 
+		array(
+			'title' => get_bloginfo( 'name', 'display' ),
+			'path' => trailingslashit( parse_url( home_url(), PHP_URL_PATH ) ),
+			'lang' => pll_current_language(),
+			'template' => str_replace( 'page-', '', basename( get_page_template_slug(), '.php' ) ),
+			'api' => esc_url_raw( get_rest_url( null, '/wp/v2/' ) ),
+			'root' => esc_url_raw( trailingslashit( home_url() ) ),
+			'theme' => esc_url_raw( get_stylesheet_directory_uri() ),
+			'current' => esc_url_raw( trailingslashit( get_the_permalink() ) )
+		)
+	)
+) );
 }
 add_action( 'wp_enqueue_scripts', 'coi_scripts' );
 
@@ -530,6 +544,7 @@ add_theme_support( 'post-thumbnails', array( 'post', 'page', 'story', 'project',
 function add_file_types_to_uploads( $file_types ){
 	$new_filetypes = array();
 	$new_filetypes['svg'] = 'image/svg+xml';
+	$new_filetypes['webp'] = 'image/webp';
 	$file_types = array_merge($file_types, $new_filetypes );
 	return $file_types;
 }
@@ -614,13 +629,16 @@ function format_date( $date, $lang ) {
 	$month = pll__( $obj ? date_format( $obj, 'F' ) : null );
 	$year = $obj ? date_format( $obj, 'Y' ) : null;
 
+
 	if( $lang == 'en' ) {
 		$date_str = $month . ' ' . $day . ', ' . $year;
 	} else if( $lang == 'es' ) {
 		$date_str = $day . ' ' . $month . ', ' . $year;
 	}
 
-	return $date_str;
+	if( isset( $date_str ) ) {
+		return $date_str;
+	}
 }
 
 function get_dates( $post, $lang ) {
@@ -730,6 +748,82 @@ function stringTruncate( $string, $length ) {
 	}
 	return( $string );
 }
+
+//////////////////////////////////////////////
+/////////////////////AJAX/////////////////////
+//////////////////////////////////////////////
+
+
+function get_loop( $req ) {
+
+	$params = $req->get_params();
+
+	$taxonomies = array( 'happening_theme' );
+	$meta_fields = array( 'location' );
+
+	$tax_query = array(
+		'relation' => 'AND',
+	);
+
+	$meta_query = array(
+		'relation' => 'AND',
+	);
+
+	foreach( $params as $key => $value ) {
+
+		if( in_array( $key, $taxonomies ) ) {
+
+			if( $value ) {
+				$tax_query[] = array(
+					'field' => 'slug',
+					'taxonomy' => $key,
+					'terms' => explode( ',', $value )
+				);
+			}
+
+		}
+
+		if( in_array( $key, $meta_fields ) ) {
+
+			$post = get_page_by_path( $value, OBJECT, $key );
+			if( is_object( $post ) ) {
+				$meta_query[] = array(
+					'compare' => 'IN',
+					'key' => $key,
+					'value' => explode( ',', $post->ID )
+				);
+			}
+
+		}
+
+	}
+
+	if( isset( $req['type'] ) ) {
+
+		get_template_part( 'parts/loop', $req['type'], array(
+			'query' => array(
+				'posts_per_page' => -1,
+				'tax_query' => $tax_query,
+				'meta_query' => $meta_query
+			),
+			'params' => $params
+		) );
+
+	}
+
+}
+
+function register_routes() {
+
+	register_rest_route( 'wp/v2', '/get_loop', array(
+		'methods' => 'GET',
+		'callback' => 'get_loop',
+		'permission_callback' => '__return_true'
+	));
+
+}
+
+add_action( 'rest_api_init', 'register_routes' );
 
 //////////////////////////////////////////////
 /////////////////TRANSLATIONS/////////////////

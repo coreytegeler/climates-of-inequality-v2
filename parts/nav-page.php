@@ -2,7 +2,7 @@
 	<ul>
 		<?php foreach ( $args['sections'] as $index => $section ) { ?>
 			<li>
-				<a href="#<?= slugify( $section ); ?>">
+				<a href="#<?= slugify( $section ); ?>" class="arrow-link">
 					<?= $section; ?>
 				</a>
 			</li>

@@ -50,7 +50,7 @@ $funders = get_field( 'funders_text', $story );
 	'title' => pll__( 'Our Point of View' )
 ) ); ?>
 
-<?php get_template_part( 'parts/loop', 'projects', array(
+<?php get_template_part( 'parts/loop', 'project', array(
 	'title' => pll__( 'Projects' ),
 	'story' => $story
 ) ); ?>

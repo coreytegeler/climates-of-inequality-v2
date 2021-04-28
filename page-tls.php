@@ -1,13 +1,9 @@
 <?php
-/* Template Name: Translocal Learning Studio */
+/* Template Name: Resources */
 get_header();
 
 $page = $post;
 ?>
-
-<?php get_template_part( 'parts/cover', 'learning-together', array(
-	'page' => $page,
-) ); ?>
 
 <?php get_template_part( 'parts/nav', 'page', array(
 	'sections' => array(
@@ -31,7 +27,15 @@ $page = $post;
 
 			<h4><?= pll__( 'Overview' ); ?></h4>
 
-			<?= $page->post_content; ?>
+			<div id="post-content" class="lg-text">
+				<?= $page->post_content; ?>
+			</div>
+
+			<div class="mt-xl">
+				<a href="#" class="arrow-link">
+					<?= pll__( 'Download Full Description' ); ?>
+				</a>
+			</div>
 
 		</div>
 

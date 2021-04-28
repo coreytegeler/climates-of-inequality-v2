@@ -1,0 +1,178 @@
+@use "vars" as *;
+
+/*****************************
+************BUTTONS***********
+*****************************/
+
+a.arrow-link, .arrow-link {
+	display: inline;
+	padding: 2px .8em 2px 2px;
+	background-size: auto .8em;
+	background-position: right center;
+	background-repeat: no-repeat;
+	background-image: url(images/right-arrow-blue.svg);
+	color: $blue;
+	@include sm-text;
+	@include caps-text;
+	&, &:focus, &:hover, &:visited {
+		color: $blue;
+	}
+}
+
+button, .button, .button:hover, .button:focus, .button:visited {
+	display: table;
+	padding: 1rem;
+	margin: 0;
+	background-color: $blue;
+	color: white;
+	text-align: center;
+	font-weight: 500;
+	border: none;
+	@include xs-text;
+	@include caps-text;
+}
+form button {
+	width: 100%;
+}
+
+
+/*****************************
+************SELECT************
+*****************************/
+
+.select-dropdown {
+	width: 100%;
+	position: relative;
+	margin: 0 .25em;
+	label {
+		width: 100%;
+		height: 100%;
+		padding: .5rem 2rem .5rem .5rem;
+		margin: 0;
+		position: absolute;
+		left: 0;
+		top: 0;
+		background-color: $dark;
+		color: white;
+		font-weight: 500;
+		@include sm-text;
+		@include caps-text;
+		pointer-events: none;
+		&::after {
+			content: "";
+			width: 2rem;
+			height: 100%;
+			position: absolute;
+			right: 0;
+			top: 0;
+			background-size: .5rem;
+			background-position: center;
+			background-repeat: no-repeat;
+			background-image: url(images/down-arrow-white.svg);
+		}
+	}
+	select {
+		width: 100%;
+		padding: .5rem;
+		background-color: $dark;
+		color: white;
+		cursor: pointer;
+		@include sm-text;
+	}
+	option {
+
+	}
+	&:first-child {
+		margin-left: .5rem;
+	}
+	&:last-child {
+		margin-right: .5rem;
+	}
+}
+
+
+/*****************************
+************FILTER************
+*****************************/
+
+#loop-filter {
+	display: flex;
+	justify-content: center;
+	align-content: space-evenly;
+	margin-bottom: 4rem;
+}
+
+#filter-notice {
+	&[aria-hidden="true"] {
+		opacity: 0;
+		pointer-events: none;
+	}
+}
+
+#filter-reset {
+	display: table;
+	float: right;
+	cursor: pointer;
+}
+
+#loop {
+	transition: opacity 500ms ease-in-out;
+	&.loading {
+		opacity: .25;
+	}
+}
+
+
+/*****************************
+***********SLIDESHOW**********
+*****************************/
+
+#slideshow {
+	position: relative;
+	margin-bottom: 3rem;
+}
+
+.slideshow-arrow {
+	width: 2rem;
+	height: 2rem;
+	position: absolute;
+	top: calc(50% - 1rem);
+	background-size: auto 1.5rem;
+	background-position: center;
+	background-repeat: no-repeat;
+	cursor: pointer;
+	&[data-direction="prev"] {
+		background-image: url(images/left-arrow-black.svg);
+		left: -3rem;
+	}
+	&[data-direction="next"] {
+		background-image: url(images/right-arrow-black.svg);
+		right: -3rem;
+	}
+}
+
+#slides-wrapper {
+	position: relative;
+}
+
+.slide {
+	display: none;
+	figure {
+		margin: 0;
+	}
+	&.media {
+		figcaption {
+			display: none;
+		}
+		img {
+			width: 100%;
+		}
+	}
+	&.caption {
+		margin-top: .5rem;
+		@include xs-text;
+	}
+	&.active {
+		display: block;
+	}
+}

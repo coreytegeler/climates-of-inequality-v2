@@ -30,13 +30,12 @@ if( sizeof( $current_location_arr ) ) {
 
 	<div id="cover-image" <?= post_bg( $page, 'large' ); ?>></div>
 
-	<div id="cover-card">
-		<div class="row">
-			<div class="col col-10 col-md-8 col-lg-6">
+		<div id="cover-card" class="container">
+			<div class="row">
 
-				<header id="cover-header">
+				<div class="col col-10 col-md-8">
 
-					<div class="row">
+					<header id="cover-header" class="row">
 
 						<div class="col col-8">
 							<div class="caps-text sm-text">
@@ -69,11 +68,15 @@ if( sizeof( $current_location_arr ) ) {
 							</div>
 						</div>
 
-					</div>
+					</header>
 
-				</header>
+				</div>
 
-				<div id="cover-content" class="blue-bg white-text mt-md">
+			</div>
+
+			<div class="row">
+
+				<div id="cover-content" class="col col-10 col-md-8">
 					<?php
 					$upcoming_event_args = array(
 						'post_type' => 'event',
@@ -111,8 +114,10 @@ if( sizeof( $current_location_arr ) ) {
 					<?php } ?>
 				</div>
 
-
 			</div>
+			
 		</div>
+
 	</div>
+
 <?php } ?>

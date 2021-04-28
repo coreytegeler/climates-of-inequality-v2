@@ -21,7 +21,7 @@ $page = $post;
 				<?= $page->post_content; ?>
 			</div>
 
-			<?php get_template_part( 'parts/loop', 'events' ); ?>
+			<?php get_template_part( 'parts/loop', 'event' ); ?>
 
 
 		</div>

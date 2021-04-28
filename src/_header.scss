@@ -1,15 +1,15 @@
 @use "vars" as *;
 
 header#main-header {
-	height: 8.5rem;
+	height: 6.5rem;
 	position: relative;
 	a, a:hover, a:focus {
 		color: $dark;
 		text-decoration: none;
 	}
 	.container {
-		padding-top: 2rem;
-		padding-bottom: 2rem;
+		padding-top: 1rem;
+		padding-bottom: 1rem;
 	}
 }
 
@@ -18,8 +18,8 @@ header#main-header {
 	@include xl-text;
 }
 #header-tagline {
-	@include sm-text;
 	@include caps-text;
+	@include sm-text;
 }
 
 #header-icons {
@@ -36,7 +36,6 @@ header#main-header {
 
 nav {
 	font-weight: 500;
-	@include caps-text;
 	ul {
 		width: 100%;
 		margin: 0;
@@ -64,6 +63,7 @@ nav {
 			background: rgba($light, .9);
 			color: $dark;
 			text-align: center;
+			@include caps-text;
 			&:hover, &:focus {
 				background: $blue;
 				color: white !important;

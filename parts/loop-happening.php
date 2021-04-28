@@ -1,5 +1,4 @@
 <?php
-
 $lang = pll_current_language();
 
 $happenings_args = array(
@@ -14,13 +13,18 @@ if( isset( $args['query'] ) ) {
 }
 
 $happenings = get_posts( $happenings_args );
+?>
 
 
-if( $happenings ) { ?>
+<div class="container">
 
-	<div class="container">
+	<?php if( isset( $args['title'] ) ) { ?>
 
 		<h4><?= $args['title']; ?></h4>
+
+	<?php } ?>
+
+	<?php if( $happenings ) { ?>
 
 		<div class="row">
 
@@ -32,7 +36,7 @@ if( $happenings ) { ?>
 				
 				<div class="thumb col col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
 
-					<a href="<?= the_permalink( $happening ) ?>">
+					<a href="<?= the_permalink( $happening ) ?>" class="thumb-link-wrapper">
 
 						<div class="thumb-image square" <?= post_bg( $happening ); ?>></div>
 
@@ -46,30 +50,30 @@ if( $happenings ) { ?>
 								<div><?= format_date( $happening->post_date, $lang ); ?></div>
 							</div>
 
-							<?php if( $location ) { ?>
-								<div class="xs-text blue-text caps-text">
-									<?= $location->post_title; ?>
-								</div>
-							<?php } ?>
-
-							<?php if( $themes ) { ?>
-								<div class="xs-text blue-text caps-text">
-									<?php foreach( $themes as $index => $theme ) { ?>
-										<div class="mb-xs"><?= $theme->name; ?></div>
-									<?php } ?>
-								</div>
-							<?php } ?>
-
 						</div>
 
 					</a>
+
+					<?php if( $location ) { ?>
+						<div class="xs-text blue-text caps-text">
+							<?= $location->post_title; ?>
+						</div>
+					<?php } ?>
+
+					<?php if( $themes ) { ?>
+						<div class="xs-text blue-text caps-text">
+							<?php foreach( $themes as $index => $theme ) { ?>
+								<div class="mb-xs"><?= $theme->name; ?></div>
+							<?php } ?>
+						</div>
+					<?php } ?>
+
 				</div>
 
 			<?php } ?>
 
 		</div>
 
-	</div>
+	<?php } ?>
 
-<?php } ?>
-
+</div>

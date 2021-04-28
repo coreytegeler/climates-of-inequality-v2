@@ -18,6 +18,7 @@ $parent = get_post( $post->post_parent );
 
 				<?php $siblings_args = array(
 					'child_of' => $parent->ID,
+					'sort_order' => 'DESC'
 				);
 				$siblings = get_pages( $siblings_args );
 				foreach ( $siblings as $sibling ) {

@@ -19,7 +19,7 @@ $story = get_story( $location );
 
 </div>
 
-<?php get_template_part( 'parts/loop', 'happenings', array(
+<?php get_template_part( 'parts/loop', 'happening', array(
 	'title' => '',
 	'count' => 6,
 	'query' => array(
@@ -28,7 +28,7 @@ $story = get_story( $location );
 	)
 ) ); ?>
 
-<?php get_template_part( 'parts/loop', 'projects', array(
+<?php get_template_part( 'parts/loop', 'project', array(
 	'title' => pll__( 'Related Projects' ),
 	'story' => $story
 ) ); ?>

@@ -29,7 +29,7 @@ if( $press_items ) { ?>
 				
 				<div class="thumb col col-12 col-md-6 col-lg-4">
 
-					<a href="<?= $url ?>" target="_blank">
+					<a href="<?= $url ?>" target="_blank" class="thumb-link-wrapper">
 
 						<div class="thumb-image" <?= post_bg( $press_item ); ?>></div>
 

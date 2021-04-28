@@ -6,7 +6,7 @@ $location = get_field( 'location', $story );
 
 <div id="cover-card">
 	<div class="row">
-		<div class="col col-10 col-md-6">
+		<div class="col col-10 col-md-8">
 			<header id="cover-header">
 				<h2><?= $location->post_title; ?></h2>
 				<h3><?= $story->post_title; ?></h3>
