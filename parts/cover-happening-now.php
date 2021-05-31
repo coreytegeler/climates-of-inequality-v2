@@ -16,11 +16,13 @@ $page = $post;
 				<?= $page->post_title; ?>
 			</h4>
 
-			<div class="xl-text">
+			<div class="xl-text pb-xl">
 				<?= $page->post_content; ?>
 			</div>
 
 		</div>
+
+		<a href="#content" role="button" id="skip-to-content" class="col col-10 col-md-8 white-bg blue"></a>
 
 	</div>
 </div>

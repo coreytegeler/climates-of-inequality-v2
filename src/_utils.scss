@@ -21,6 +21,10 @@
 	@include caps-text;
 }
 
+.bold-text {
+	font-weight: 900;
+}
+
 .blue-text, .blue-text:hover, .blue-text:focus, .blue-text:visited {
 	color: $blue !important;
 }
@@ -29,14 +33,51 @@
 	color: white !important;
 }
 
+.white-bg {
+	background-color: white;
+}
+
 .light-bg {
 	background-color: $light !important;
 	padding: .3rem .5rem .25rem .5rem;
-	display: table;
+}
+
+.medium-bg {
+	background-color: $medium;
+}
+
+.dark-bg {
+	background-color: $dark;
+}
+
+.white-alpha-bg {
+	background-color: $white-alpha;
+}
+
+.light-alpha-bg {
+	background-color: $light-alpha;
+}
+
+.medium-alpha-bg {
+	background-color: $medium-alpha;
 }
 
 .blue-bg {
 	background-color: $blue !important;
+}
+
+
+.mt-auto {
+	margin-top: auto;
+}
+.mb-auto {
+	margin-bottom: auto;
+}
+.mr-auto {
+	margin-right: auto;
+}
+.ml-auto {
+	margin-left: auto;
 }
 
 @each $size, $space in $spaces {

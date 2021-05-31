@@ -2,8 +2,8 @@
 /* Template Name: About */
 // set_query_var( 'body_classes', $body_classes );
 get_header();
-
-$statement = get_field( 'statement', $post );
+$page = $post;
+// $statement = get_field( 'statement', $post );
 $team = get_field( 'team', $post );
 $funders = get_field( 'funders_text', $post );
 ?>
@@ -19,7 +19,7 @@ $funders = get_field( 'funders_text', $post );
 	<div class="row justify-content-center">
 
 		<div class="col col-12 col-md-8 col-lg-6">
-			<?= $statement; ?>
+			<?= $page->post_content; ?>
 		</div>
 
 	</div>

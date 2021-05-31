@@ -15,7 +15,7 @@ $page = $post;
 				<?=  $page->post_title; ?>
 			</h4>
 
-			<div id="post-content" class="lg-text">
+			<div id="post-content" class="lg-text mb-xxl">
 				<?= $page->post_content; ?>
 			</div>
 

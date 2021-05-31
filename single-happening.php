@@ -19,19 +19,27 @@ $story = get_story( $location );
 
 </div>
 
-<?php get_template_part( 'parts/loop', 'happening', array(
-	'title' => '',
-	'count' => 6,
-	'query' => array(
-		'posts_per_page' => 6,
-		'exclude' => array( $happening->ID )
-	)
-) ); ?>
+<div class="container">
 
-<?php get_template_part( 'parts/loop', 'project', array(
-	'title' => pll__( 'Related Projects' ),
-	'story' => $story
-) ); ?>
+	<?php get_template_part( 'parts/loop', 'happening', array(
+		'title' => '',
+		'count' => 6,
+		'query' => array(
+			'posts_per_page' => 6,
+			'exclude' => array( $happening->ID )
+		)
+	) ); ?>
+
+</div>
+
+<div class="container">
+
+	<?php get_template_part( 'parts/loop', 'project', array(
+		'title' => pll__( 'Related Projects' ),
+		'story' => $story
+	) ); ?>
+	
+</div>
 
 
 <?php get_footer(); ?>

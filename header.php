@@ -9,7 +9,7 @@
 
 	<body <?php body_class(); ?>>
 
-		<div id="page" class="site">
+		<div id="page">
 			<a class="skip-link screen-reader-text" href="#content">
 				<?php pll__( 'Skip to content' ); ?>
 			</a>
@@ -17,7 +17,7 @@
 			<header id="main-header" role="banner">
 				<div class="container">
 					<div class="row">
-						<div class="col">
+						<div class="col col-10 col-sm-8">
 							<a href="<?= esc_url( home_url( '/' ) ); ?>">
 								<div id="header-title">
 									<?= get_bloginfo( 'name' ); ?>
@@ -27,37 +27,49 @@
 								</div>
 							</a>
 						</div>
-						<div class="col">
+						<div class="col col-2 col-sm-4">
 
-							<div id="header-icons">
+							<div class="icons">
 
-								<?php if( get_field( 'hal_url', 'option' ) ) { ?>
-									<a href="<?= get_field( 'hal_url', 'option' ); ?>">
-										<img src="<?= get_field( 'hal_logo', 'option' ); ?>" />
-									</a>
-								<?php } ?>
+								<div class="d-none d-md-flex justify-content-end">
+									<?php if( $hal_url = get_field( 'hal_url', 'option' ) ) { ?>
+										<a href="<?= $hal_url; ?>">
+											<span class="sr-only"><?= pll__( 'Humanities Action Lab' ); ?></span>
+											<img src="<?= get_template_directory_uri(); ?>/assets/images/hal.svg" />
+										</a>
+									<?php } ?>
 
-								<?php if( get_field( 'twitter_url', 'option' ) ) { ?>
-									<a href="<?= get_field( 'twitter_url', 'option' ); ?>">
-										<img src="<?= get_field( 'twitter_logo', 'option' ); ?>" />
-									</a>
-								<?php } ?>
+									<?php if( $twitter_url = get_field( 'twitter_url', 'option' ) ) { ?>
+										<a href="<?= $twitter_url; ?>">
+											<span class="sr-only"><?= pll__( 'Twitter' ); ?></span>
+											<img src="<?= get_template_directory_uri(); ?>/assets/images/twitter.svg" />
+										</a>
+									<?php } ?>
 
-								<?php if( get_field( 'instagram_url', 'option' ) ) { ?>
-									<a href="<?= get_field( 'instagram_url', 'option' ); ?>">
-										<img src="<?= get_field( 'instagram_logo', 'option' ); ?>" />
-									</a>
-								<?php } ?>
+									<?php if( $instagram_url = get_field( 'instagram_url', 'option' ) ) { ?>
+										<a href="<?= $instagram_url; ?>">
+											<span class="sr-only"><?= pll__( 'Instagram' ); ?></span>
+											<img src="<?= get_template_directory_uri(); ?>/assets/images/instagram.svg" />
+										</a>
+									<?php } ?>
+								</div>
+
+								<div class="d-flex d-md-none">
+
+									<?php get_template_part( 'parts/nav', 'mobile' ); ?>
+
+								</div>
 
 							</div>
 
 						</div>
 					</div>
 				</div>
+
 				<nav id="main-nav" role="navigation" aria-label="<?= pll__( 'Main' ); ?>">
 					<?php if( has_nav_menu( 'header' ) ) { ?>
 
-						<ul id="header-menu">
+						<ul>
 
 							<?php
 							$menu_locations = get_nav_menu_locations();
@@ -65,7 +77,7 @@
 							$header_menu_items = wp_get_nav_menu_items( $header_menu->term_id );
 							foreach ( $header_menu_items as $key => $menu_item ) {
 								$current = $menu_item->object_id == get_queried_object_id(); ?>
-								<li class="menu-item <?= $current ? 'current' : ''; ?>">
+								<li class="menu-item-button <?= $current ? 'current' : ''; ?>">
 									<a href="<?= $menu_item->url; ?>">
 										<span><?= $menu_item->title; ?></span>
 									</a>
@@ -77,6 +89,7 @@
 
 					<?php } ?>
 				</nav>
+
 
 			</header>
 
@@ -100,4 +113,4 @@
 				<?php get_template_part( 'parts/cover', $cover_name ); ?>
 			</div>
 
-
+			<div id="content">

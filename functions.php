@@ -15,16 +15,17 @@ function coi_scripts() {
 	$style_path = $root_path . '/assets/style' . ( is_dev() ? '' : '.min' ) . '.css';
 	$script_path = $root_path . '/assets/script' . ( is_dev() ? '' : '.min' ) . '.js';
 
-	wp_enqueue_style( 'bootstrap-reboot', 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap-reboot.min.css' );
-	wp_enqueue_style( 'bootstrap-grid', 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap-grid.min.css' );
+	// wp_enqueue_style( 'bootstrap-reboot', 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap-reboot.min.css' );
+	// wp_enqueue_style( 'bootstrap-grid', 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap-grid.min.css' );
+	// wp_enqueue_style( 'bootstrap', 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' );
 	// wp_enqueue_script( 'interact', 'https://unpkg.com/interactjs/dist/interact.min.js' );
 	// wp_enqueue_script( 'd3', 'https://d3js.org/d3.v4.min.js' );
 	// wp_enqueue_script( 'masonry', 'https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js' );
-	// wp_enqueue_script( 'jquery', get_template_directory_uri() . '/jquery.min.js', array(), '3.4.1', true );
-	// wp_enqueue_script( 'jquery-ui', get_template_directory_uri() . '/jquery-ui.min.js', array( 'jquery' ), '1.12.1', true );
+	wp_enqueue_script( 'jquery', 'https://code.jquery.com/jquery-3.6.0.min.js', array(), '3.6.0', true );
+	wp_enqueue_script( 'jquery-ui', 'https://code.jquery.com/ui/1.12.1/jquery-ui.min.js', array( 'jquery' ), '1.12.1', true );
 
 	wp_enqueue_style( 'coi-style', $style_path, array(), $ver );
-	wp_enqueue_script( 'coi-script', $script_path, array(), $ver, true );
+	wp_enqueue_script( 'coi-script', $script_path, array( 'jquery', 'jquery-ui' ), $ver, true );
 
 	wp_scripts()->add_data( 'coi-script', 'data', sprintf( 'var settings = %s;', wp_json_encode( 
 		array(
@@ -37,12 +38,14 @@ function coi_scripts() {
 			'theme' => esc_url_raw( get_stylesheet_directory_uri() ),
 			'current' => esc_url_raw( trailingslashit( get_the_permalink() ) )
 		)
-	)
-) );
+	) ) );
+	
+	wp_enqueue_script( 'addevent', 'https://addevent.com/libs/atc/1.6.1/atc.min.js', array(), null, true );
 }
 add_action( 'wp_enqueue_scripts', 'coi_scripts' );
 
 function admin_styles() {
+	add_editor_style( get_template_directory_uri() . '/editor.css' );
 	wp_enqueue_style( 'admin-styles', get_template_directory_uri() . '/admin.css' );
 }
 add_action( 'admin_enqueue_scripts', 'admin_styles' );
@@ -241,7 +244,7 @@ function register_events() {
 			'menu_icon' => 'dashicons-calendar-alt',
 			'public' => true,
 			'has_archive' => true,
-			'supports' => array( 'title', 'thumbnail', 'excerpt' ),
+			'supports' => array( 'title', 'thumbnail', 'editor', 'excerpt' ),
 			'show_in_rest' => true
 		)
 	);
@@ -481,6 +484,58 @@ function register_event_types() {
 }
 add_action( 'init', 'register_event_types' );
 
+function register_event_topics() {
+	$event_topic_args = array(
+		'labels' => array(
+			'name'              => _x( 'Topic', 'taxonomy general name', 'textdomain' ),
+			'singular_name'     => _x( 'Topic', 'taxonomy singular name', 'textdomain' ),
+			'search_items'      => __( 'Search Topics', 'textdomain' ),
+			'all_items'         => __( 'All Topics', 'textdomain' ),
+			'parent_item'       => __( 'Parent Topic', 'textdomain' ),
+			'parent_item_colon' => __( 'Parent Topic:', 'textdomain' ),
+			'edit_item'         => __( 'Edit Topic', 'textdomain' ),
+			'update_item'       => __( 'Update Topic', 'textdomain' ),
+			'add_new_item'      => __( 'Add New Topic', 'textdomain' ),
+			'new_item_name'     => __( 'New Topic Name', 'textdomain' ),
+			'menu_name'         => __( 'Topics', 'textdomain' ),
+		),
+		'hierarchical' => true,
+		'show_uri' => true,
+		'show_admin_column' => true,
+		'show_in_rest' => true,
+		'update_count_callback' => '_update_post_term_count',
+		'query_var' => true,
+	);
+	register_taxonomy( 'event_topic', array( 'event' ), $event_topic_args );
+}
+add_action( 'init', 'register_event_topics' );
+
+function register_sessions() {
+	$session_args = array(
+		'labels' => array(
+			'name'              => _x( 'Session', 'taxonomy general name', 'textdomain' ),
+			'singular_name'     => _x( 'Session', 'taxonomy singular name', 'textdomain' ),
+			'search_items'      => __( 'Search Sessions', 'textdomain' ),
+			'all_items'         => __( 'All Sessions', 'textdomain' ),
+			'parent_item'       => __( 'Parent Session', 'textdomain' ),
+			'parent_item_colon' => __( 'Parent Session:', 'textdomain' ),
+			'edit_item'         => __( 'Edit Session', 'textdomain' ),
+			'update_item'       => __( 'Update Session', 'textdomain' ),
+			'add_new_item'      => __( 'Add New Session', 'textdomain' ),
+			'new_item_name'     => __( 'New Session Name', 'textdomain' ),
+			'menu_name'         => __( 'Sessions', 'textdomain' ),
+		),
+		'hierarchical' => true,
+		'show_uri' => true,
+		'show_admin_column' => true,
+		'show_in_rest' => true,
+		'update_count_callback' => '_update_post_term_count',
+		'query_var' => true,
+	);
+	register_taxonomy( 'session', array( 'event' ), $session_args );
+}
+add_action( 'init', 'register_sessions' );
+
 
 //////////////////////////////////////////////
 /////////////////////MENUS////////////////////
@@ -504,6 +559,14 @@ function remove_menus() {
 	remove_menu_page( 'edit-comments.php' );
 }
 add_action( 'admin_menu', 'remove_menus' );
+
+function wrap_embed_block( $block_content, $block ) {
+  if ( 'core/html' === $block['blockName'] ) {
+    $block_content = '<div class="example">' . $block_content . '</div>';
+  }
+  return $block_content;
+}
+add_filter( 'render_block', 'wrap_embed_block', 10, 2 );
 
 // function remove_editors() {
 	// remove_post_type_support( 'location', 'editor' );
@@ -586,19 +649,19 @@ function get_story( $location ) {
 	}
 }
 
-function get_home() {
-	$lang = pll_current_language();
-	switch( $lang ) {
-		case 'en':
-			$home_slug = 'home';
-			break;
-		case 'es':
-			$home_slug = 'principal';
-			break;
-	}
-	$home_page = get_page_by_path( $home_slug );
-	return $home_page;
-}
+// function get_home() {
+// 	$lang = pll_current_language();
+// 	switch( $lang ) {
+// 		case 'en':
+// 			$home_slug = 'home';
+// 			break;
+// 		case 'es':
+// 			$home_slug = 'principal';
+// 			break;
+// 	}
+// 	$home_page = get_page_by_path( $home_slug );
+// 	return $home_page;
+// }
 
 function sort_contribs( $contribs ) {
 	if( $contribs && is_array( $contribs ) ) {
@@ -622,11 +685,15 @@ function get_venue( $obj ) {
 	}
 }
 
-function format_date( $date, $lang ) {
+function format_date( $date, $lang = null ) {
+	if( $lang == null ) {
+		$lang = pll_current_language();
+	}
+
 	$obj = $date ? date_create( $date ) : null;
 
 	$day = $obj ? date_format( $obj, 'd' ) : null;
-	$month = pll__( $obj ? date_format( $obj, 'F' ) : null );
+	$month = pll__( $obj ? date_format( $obj, 'M' ) : null );
 	$year = $obj ? date_format( $obj, 'Y' ) : null;
 
 
@@ -641,7 +708,11 @@ function format_date( $date, $lang ) {
 	}
 }
 
-function get_dates( $post, $lang ) {
+function get_dates( $post, $lang = null ) {
+	if( $lang == null ) {
+		$lang = pll_current_language();
+	}
+	
 	$hide_days = get_field( 'hide_days', $post );
 
 	$start_str = get_field( 'start_date', $post );
@@ -656,12 +727,12 @@ function get_dates( $post, $lang ) {
 
 	// $start_date = '';
 	$start_day = $start_obj ? date_format( $start_obj, 'd' ) : null;
-	$start_month = pll__( $start_obj ? date_format( $start_obj, 'F' ) : null );
+	$start_month = pll__( $start_obj ? date_format( $start_obj, 'M' ) : null );
 	$start_year = $start_obj ? date_format( $start_obj, 'Y' ) : null;
 
 	// $end_date = '';
 	$end_day = $end_obj ? date_format( $end_obj, 'd' ) : null;
-	$end_month = pll__( $end_obj ? date_format( $end_obj, 'F' ) : null );
+	$end_month = pll__( $end_obj ? date_format( $end_obj, 'M' ) : null );
 	$end_year = $end_obj ? date_format( $end_obj, 'Y' ) : null;
 
 	$same_year = $start_year == $end_year;
@@ -683,15 +754,16 @@ function get_dates( $post, $lang ) {
 		$end_date = $end_day . ' ' . $end_month;
 	}
 
-	if( !$end_str ) {
-		$dates_str = $start_date . ', ' . $start_year;
-	} else if( $same_year ) {
-		$dates_str = $start_date . '&mdash;' . $end_date . ', ' . $end_year;	
-	} else {
-		$dates_str = $start_date . ', ' . $start_year . '&mdash;' . $end_date . ', ' . $end_year;
+	if( isset( $start_date) ) {
+		if( !$end_str ) {
+			$dates_str = $start_date . ', ' . $start_year;
+		} else if( $same_year ) {
+			$dates_str = $start_date . '&mdash;' . $end_date . ', ' . $end_year;	
+		} else {
+			$dates_str = $start_date . ', ' . $start_year . '&mdash;' . $end_date . ', ' . $end_year;
+		}
+		return $dates_str;
 	}
-
-	return $dates_str;
 }
 
 function get_times( $post ) {
@@ -699,6 +771,25 @@ function get_times( $post ) {
 	$end_time = get_field( 'end_time', $post );
 	$span = $start_time . ( $end_time ? '—' . $end_time : '' );
 	return $span;
+}
+
+function is_past( $post ) {
+
+	$today = strtotime( 'now' );
+
+	$start_str = get_field( 'start_date', $post );
+	$end_str = get_field( 'end_date', $post );
+
+	$start_date = $start_str ? strtotime( $start_str ) : null;
+	$end_date = $end_str ? strtotime( $end_str ) : null;
+
+	if( $end_date ) {
+		return $today > $end_date;
+	}
+	if( $start_date ) {
+		return $today > $start_date;
+	}
+
 }
 
 function the_cover_caption( $post = null ) {
@@ -758,7 +849,7 @@ function get_loop( $req ) {
 
 	$params = $req->get_params();
 
-	$taxonomies = array( 'happening_theme' );
+	$taxonomies = array( 'happening_theme', 'event_topic' );
 	$meta_fields = array( 'location' );
 
 	$tax_query = array(
@@ -800,12 +891,19 @@ function get_loop( $req ) {
 
 	if( isset( $req['type'] ) ) {
 
+		$args = array(
+			'posts_per_page' => -1,
+		);
+
+		if( $req['type'] === 'map' ) {
+			$args['name'] = $params['location'];
+		} else {
+			$args['tax_query'] = $tax_query;
+			$args['meta_query'] = $meta_query;
+		}
+
 		get_template_part( 'parts/loop', $req['type'], array(
-			'query' => array(
-				'posts_per_page' => -1,
-				'tax_query' => $tax_query,
-				'meta_query' => $meta_query
-			),
+			'query' => $args,
 			'params' => $params
 		) );
 
@@ -829,72 +927,7 @@ add_action( 'rest_api_init', 'register_routes' );
 /////////////////TRANSLATIONS/////////////////
 //////////////////////////////////////////////
 
-pll_register_string( 'Custom', 'About', 'Page' );
-pll_register_string( 'Custom', 'Connect your community', 'Page' );
-pll_register_string( 'Custom', 'Local Stories', 'Page' );
-pll_register_string( 'Custom', 'Take action', 'Page' );
-pll_register_string( 'Custom', 'Traveling exhibitions and events', 'Page' );
-pll_register_string( 'Custom', 'Why history matters', 'Page' );
-pll_register_string( 'Custom', 'Community Partners', 'Partners' );
-pll_register_string( 'Custom', 'Exhibit Partners', 'Partners' );
-pll_register_string( 'Custom', 'University Partners', 'Partners' );
-pll_register_string( 'Custom', 'All Local Issues', 'Subheader' );
-pll_register_string( 'Custom', 'Case Study', 'Subheader' );
-pll_register_string( 'Custom', 'Contributors', 'Subheader' );
-pll_register_string( 'Custom', 'Funders', 'Subheader' );
-pll_register_string( 'Custom', 'In The News', 'Subheader' );
-pll_register_string( 'Custom', 'Local Supporters', 'Subheader' );
-pll_register_string( 'Custom', 'Map "Playlist"', 'Subheader' );
-pll_register_string( 'Custom', 'Our partners', 'Subheader' );
-pll_register_string( 'Custom', 'Our Point of View', 'Subheader' );
-pll_register_string( 'Custom', 'Partners', 'Subheader' );
-pll_register_string( 'Custom', 'Points of View', 'Subheader' );
-pll_register_string( 'Custom', 'Press', 'Subheader' );
-pll_register_string( 'Custom', 'Resources', 'Subheader' );
-pll_register_string( 'Custom', 'Results', 'Subheader' );
-pll_register_string( 'Custom', 'Select 3 aspects', 'Subheader' );
-pll_register_string( 'Custom', 'Team', 'Subheader' );
-pll_register_string( 'Custom', 'The Problem', 'Subheader' );
-pll_register_string( 'Custom', 'The Roots', 'Subheader' );
-pll_register_string( 'Custom', 'The Solutions', 'Subheader' );
-pll_register_string( 'Custom', 'What did you experience?', 'Subheader' );
-pll_register_string( 'Custom', 'Stories of Environmental Justice', 'Subheader' );
-pll_register_string( 'Custom', 'Happening Now', 'Subheader' );
-pll_register_string( 'Custom', 'Choose your location', 'Text' );
-pll_register_string( 'Custom', 'Choose your location above to vote on issues.', 'Text' );
-pll_register_string( 'Custom', 'Click to add your experience', 'Text' );
-pll_register_string( 'Custom', 'Exhibition Open', 'Text' );
-pll_register_string( 'Custom', 'Exhibtion', 'Text' );
-pll_register_string( 'Custom', 'More About This Map', 'Text' );
-pll_register_string( 'Custom', 'Learn more and vote here', 'Text' );
-pll_register_string( 'Custom', 'No', 'Text' );
-pll_register_string( 'Custom', 'Roll over to discover some.', 'Text' );
-pll_register_string( 'Custom', 'See results', 'Text' );
-pll_register_string( 'Custom', 'Select sense', 'Text' );
-pll_register_string( 'Custom', 'Submit', 'Text' );
-pll_register_string( 'Custom', 'Survey says', 'Text' );
-pll_register_string( 'Custom', 'View The Project', 'Text' );
-pll_register_string( 'Custom', 'Download Project PDF', 'Text' );
-pll_register_string( 'Custom', 'View more events', 'Text' );
-pll_register_string( 'Custom', 'Yes', 'Text' );
-pll_register_string( 'Custom', 'You said', 'Text' );
-pll_register_string( 'Custom', 'Upcoming Events', 'Text' );
-pll_register_string( 'Custom', 'Past Events', 'Text' );
-pll_register_string( 'Custom', 'Happening Now', 'Text' );
-pll_register_string( 'Custom', 'by', 'Text' );
-pll_register_string( 'Custom', 'Published on', 'Text' );
-pll_register_string( 'Custom', 'January', 'Month' );
-pll_register_string( 'Custom', 'February', 'Month' );
-pll_register_string( 'Custom', 'March', 'Month' );
-pll_register_string( 'Custom', 'April', 'Month' );
-pll_register_string( 'Custom', 'May', 'Month' );
-pll_register_string( 'Custom', 'June', 'Month' );
-pll_register_string( 'Custom', 'July', 'Month' );
-pll_register_string( 'Custom', 'August', 'Month' );
-pll_register_string( 'Custom', 'September', 'Month' );
-pll_register_string( 'Custom', 'October', 'Month' );
-pll_register_string( 'Custom', 'November', 'Month' );
-pll_register_string( 'Custom', 'December', 'Month' );
+get_template_part( 'strings' );
 
 
 //////////////////////////////////////////////

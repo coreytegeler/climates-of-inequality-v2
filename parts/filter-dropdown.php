@@ -10,8 +10,12 @@ if( isset( $args['type'] ) ) {
 			'hide_empty' => true,
 		) );
 
-		foreach ( $terms as $term ) {
-			$options[$term->slug] = $term->name;
+		if( is_array( $terms ) ) {
+
+			foreach( $terms as $term ) {
+				$options[$term->slug] = $term->name;
+			}
+
 		}
 
 	}
@@ -25,7 +29,7 @@ if( isset( $args['type'] ) ) {
 			'order' => 'ASC'
 		) );
 
-		foreach ( $posts as $post ) {
+		foreach( $posts as $post ) {
 			$options[$post->post_name] = $post->post_title;
 		}
 

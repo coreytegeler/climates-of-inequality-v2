@@ -1,15 +1,8 @@
 <?php if( isset( $args['slides'] ) && is_array( $args['slides'] ) ) { ?>
 
-	<div id="slideshow" data-active="0" data-length="<?= sizeof( $args['slides'] ); ?>">
+	<div class="slideshow" data-active="0" data-length="<?= sizeof( $args['slides'] ); ?>">
 
-		<div id="slides-wrapper">
-
-			<?php if( sizeof( $args['slides'] ) ) { ?>
-
-				<div class="slideshow-arrow" data-direction="prev"></div>
-				<div class="slideshow-arrow" data-direction="next"></div>
-
-			<?php } ?>
+		<div class="slides-wrapper">
 
 			<?php foreach ( $args['slides'] as $index => $slide ) { ?>
 
@@ -27,6 +20,23 @@
 
 						</figure>
 
+					<?php } ?>
+
+				</div>
+
+			<?php } ?>
+
+			<?php if( sizeof( $args['slides'] ) ) { ?>
+
+				<div class="slideshow-arrows">
+
+					<div class="slideshow-arrow" data-direction="prev"></div>
+					<div class="slideshow-arrow" data-direction="next"></div>
+
+					<?php if( isset( $args['marker'] ) ) { ?>
+						<div class="marker">
+							<span><?= $args['marker']; ?></span>
+						</div>
 					<?php } ?>
 
 				</div>

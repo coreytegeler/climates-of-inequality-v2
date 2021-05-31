@@ -7,11 +7,14 @@ $story = get_field( 'local_story', $project );
 // $funders = get_field( 'funders_text', $story );
 ?>
 
+<div class="container" id="projects">
 
-<?php get_template_part( 'parts/loop', 'project', array(
-	'title' => pll__( 'Projects' ),
-	'story' => $story
-) ); ?>
+	<?php get_template_part( 'parts/loop', 'project', array(
+		'title' => pll__( 'Projects' ),
+		'story' => $story
+	) ); ?>
+	
+</div>
 
 
 <div class="container" id="contributors">

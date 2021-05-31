@@ -1,5 +1,9 @@
 @use "vars" as *;
 
+/*****************************
+**********MAIN HEADER*********
+*****************************/
+
 header#main-header {
 	height: 6.5rem;
 	position: relative;
@@ -10,6 +14,14 @@ header#main-header {
 	.container {
 		padding-top: 1rem;
 		padding-bottom: 1rem;
+	}
+	.col {
+		position: static;
+	}
+	.icons {
+		a {
+			opacity: .5;
+		}
 	}
 }
 
@@ -22,17 +34,9 @@ header#main-header {
 	@include sm-text;
 }
 
-#header-icons {
-	display: flex;
-	justify-content: flex-end;
-	a {
-		margin-left: 1rem;
-	}
-	img {
-		width: auto;
-		height: 30px;
-	}
-}
+/*****************************
+*************NAVS*************
+*****************************/
 
 nav {
 	font-weight: 500;
@@ -44,7 +48,7 @@ nav {
 		justify-content: center;
 		list-style: none;
 	}
-	li.menu-item {
+	li.menu-item-button {
 		flex: 1;
 		margin-right: 1px;
 		@include sm-text;
@@ -81,6 +85,9 @@ nav#main-nav {
 	top: 100%;
 	left: 0;
 	z-index: 2;
+	@include sm {
+		display: none;
+	}
 }
 
 nav#sub-nav {
@@ -92,3 +99,51 @@ nav#sub-nav {
 		max-width: 17em;
 	}
 }
+
+/*****************************
+*********MOBILE HEADER********
+*****************************/
+.burger {
+	width: 2rem;
+	height: 2rem;
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-image: url(images/burger-dark.svg);
+	cursor: pointer;
+}
+
+nav#mobile-nav {
+	@include xl-text;
+	.burger {
+		float: right;
+	}
+	.inner {
+		clear: both;
+		display: none;
+	}
+	ul {
+		display: block;
+	}
+	li {
+
+	}
+	&.open {
+		position: absolute;
+		right: 0;
+		top: 0;
+		padding: 1rem 1rem;
+		background-color: $dark-alpha;
+		z-index: 2;
+		@include xs {
+			padding: 1rem .8rem;
+		}
+		.burger {
+			background-image: url(images/burger-white.svg);
+		}
+		.inner {
+			display: block;
+		}
+	}
+}
+

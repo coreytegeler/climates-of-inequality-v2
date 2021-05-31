@@ -1,0 +1,262 @@
+@use "vars" as *;
+
+.row {
+	margin-right: -.8rem;
+	margin-left: -.8rem;
+	.col {
+		padding-right: .8rem;
+		padding-left: .8rem;
+	}
+	&.no-gutter {
+		margin-right: 0;
+		margin-left: 0;
+		padding-right: 0;
+		padding-left: 0;
+		> .col {
+			padding-right: 0;
+			padding-left: 0;
+		}
+	}
+	&.sm-gutter {
+		margin-right: -.3rem;
+		margin-left: -.3rem;
+		padding-right: .3rem;
+		padding-left: .3rem;
+		> .col {
+			padding-right: .3rem;
+			padding-left: .3rem;
+		}
+	}
+}
+/*****************************
+************THUMBS************
+*****************************/
+
+.thumb {
+	display: flex;
+	flex-direction: column;
+	margin: 0 0 4rem 0;
+}
+
+a.thumb-link-wrapper {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+.thumb-image {
+	width: 100%;
+	height: auto;
+	padding: 0 0 60% 0;
+	margin: 0 0 auto 0;
+	background-color: $light;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;
+	&.square {
+		padding-bottom: 100%;
+	}
+}
+
+.thumb-content {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	&:not(:first-child) {
+		margin: 1rem 0 0 0;
+	}
+}
+
+.thumb-title {
+	@include lg-text;
+}
+
+.thumb-subtitle {
+	color: $dark;
+	margin-top: auto;
+	padding-top: .5rem;
+}
+
+.square-label {
+	display: table;
+	max-width: 100%;
+	background-color: $light-alpha;
+	padding: .5rem .5rem .4rem .5rem;
+	@include xs-text;
+	@include caps-text;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+}
+
+/*****************************
+************CARDS*************
+*****************************/
+
+
+.card {
+	margin-bottom: 30px;
+}
+
+.card-content {
+	padding: 1rem;
+	border: 1px solid $light;
+	position: relative;
+}
+
+.card-header {
+	padding: 0 0 1rem 0;
+}
+
+.card-title {
+	@include lg-text;
+	padding: 0 4rem .25rem 0;
+	color: $dark;
+}
+
+.card-image {
+	width: 4rem;
+	height: 4rem;
+	position: absolute;
+	right: 1rem;
+	top: 1rem;
+	border-radius: 50%;
+	background-color: grey;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+/*****************************
+***********EVENTS*************
+*****************************/
+
+.event {
+	border: 0 solid $dark;
+	border-top-width: 1px;
+	padding: 2rem 0;
+	&.past {
+		opacity: .5;
+		.hide-past & {
+			display: none;
+		}
+	}
+}
+
+.cal-link {
+	display: none;
+	> span {
+		opacity: 0;
+	}
+}
+
+.cal-link.addeventatc {
+	color: $blue !important;
+	margin: 0;
+	padding: .25rem 0 .25rem 1.75rem;
+	display: block;
+	background-size: auto 1.2em;
+	background-position: left center;
+	background-repeat: no-repeat;
+	background-image: url(images/cal.svg);
+	text-shadow: none;
+	border: 0;
+	box-shadow: unset !important;
+	@include base-text;
+	&:hover {
+		font-size: $base-fs;
+		background-color: unset;
+	}
+	.addeventatc_icon {
+		display: none;
+	}
+}
+
+.addeventatc_dropdown {
+	box-shadow: unset !important;
+	background-color: $light !important;
+	font-family: inherit !important;
+	.copyx {
+		display: none !important;
+	}
+}
+
+.event-content {
+	iframe {
+		margin-bottom: 1rem;
+	}
+}
+
+/*****************************
+***********SQUARE*************
+*****************************/
+
+.square {
+	width: 100%;
+	padding-bottom: 100%;
+	background-size: cover;
+	background-color: $light;
+	background-position: center;
+	background-repeat: no-repeat;
+	position: relative;
+}
+
+.square-text {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	color: $dark;
+	font-weight: 500;
+	@include xs-text;
+	@include caps-text;
+	span {
+		padding: .25rem;
+		display: inline-block;
+		background-color: rgba(white, .9);
+	}
+}
+
+
+/*****************************
+************QUOTES************
+*****************************/
+
+.col-quote {
+	margin: 0 auto;
+	@include sm {
+		padding-bottom: 3rem;
+	}
+	blockquote {
+		.inner {
+			margin: 0 1rem 1rem 2.5rem;
+			font-weight: 800;
+			position: relative;
+			p {
+				display: inline;
+				&:not(:last-of-type) {
+					margin-bottom: 1rem;
+				}
+			}
+			&::before, &::after {
+				content: "";
+				width: 2rem;
+				height: 2rem;
+				position: absolute;
+				background-size: contain;
+				background-position: center;
+				background-repeat: no-repeat;
+			}
+			&::before {
+				left: -2.5rem;
+		    top: -.5rem;
+				background-image: url(images/quote-l.svg);
+			}
+			&::after {
+				display: inline-block;
+				margin-left: .5rem;
+				background-image: url(images/quote-r.svg);
+			}
+		}
+	}
+}

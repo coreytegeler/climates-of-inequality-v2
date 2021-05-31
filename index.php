@@ -1,4 +1,7 @@
-<?php get_header(); ?>
+<?php
+/* Template Name: Home */
+get_header();
+?>
 
 <?php get_template_part( 'parts/loop', 'press', array(
 	'title' => pll__( 'In The News' ),

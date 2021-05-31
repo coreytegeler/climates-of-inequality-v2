@@ -17,7 +17,7 @@ $funders = get_field( 'funders_text', $story );
 		<div class="col col-12 col-md-8">
 
 			
-			<h4><?= pll__( 'The Problems' ); ?></h4>
+			<h4><?= pll__( 'The Problem' ); ?></h4>
 			<?= get_field( 'problems', $story ) ?>
 
 			
@@ -46,14 +46,20 @@ $funders = get_field( 'funders_text', $story );
 	)
 ) ); ?>
 
+<?php get_template_part( 'parts/story-map' ); ?>
+
 <?php get_template_part( 'parts/quotes', null, array(
 	'title' => pll__( 'Our Point of View' )
 ) ); ?>
 
-<?php get_template_part( 'parts/loop', 'project', array(
-	'title' => pll__( 'Projects' ),
-	'story' => $story
-) ); ?>
+<div class="container" id="projects">
+
+	<?php get_template_part( 'parts/loop', 'project', array(
+		'title' => pll__( 'Projects' ),
+		'story' => $story
+	) ); ?>
+	
+</div>
 
 
 <div class="container" id="contributors">

@@ -24,13 +24,14 @@
 				
 				<div class="col col-quote col-12 col-md-6 col-lg-5">
 
-					<blockquote class="md-text blue-text">
-						<?= $text; ?> 
+					<blockquote>
+						<div class="inner md-text blue-text">
+							<?= wpautop( $text ); ?>
+						</div>
+						<cite class="sm-text">
+					  	<?= $attribution; ?>
+					  </cite>
 				  </blockquote>
-
-				  <cite class="sm-text">
-				  	<?= $attribution; ?>
-				  </cite>
 					
 				</div>
 

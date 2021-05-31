@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="5" height="10" viewBox="0 0 5 10">
-  <g id="Group_542" data-name="Group 542" transform="translate(-870.5 -3257.5)">
-    <path id="Polygon_2" data-name="Polygon 2" d="M5,0l5,5H0Z" transform="translate(875.5 3257.5) rotate(90)" fill="#0097e2"/>
+  <g transform="translate(-870.5 -3257.5)">
+    <path d="M5,0l5,5H0Z" transform="translate(875.5 3257.5) rotate(90)" fill="#0097e2"/>
   </g>
 </svg>
