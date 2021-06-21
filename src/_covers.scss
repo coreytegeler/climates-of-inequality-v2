@@ -1,58 +1,111 @@
 @use "vars" as *;
 
-#cover {
+.cover {
 	width: 100%;
-	min-height: calc(100vh - 6.5rem);
+	@include headerSpaceCalc(min-height);
+	@include headerSpace(margin-top);
 	display: flex;
+	flex-direction: column;
 	position: relative;
+	overflow: hidden;
+	@include sm {
+		@include fullHeaderSpace(margin-top);
+	}
 }
 
-#cover-image {
+#cover-slideshow {
+	width: 100%;
+	@include headerSpaceCalc(min-height);
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	.slideshow-arrow {
+		z-index: 2;
+		&[data-direction="prev"] {
+			left: 1rem;
+		}
+		&[data-direction="next"] {
+			right: 1rem;
+		}
+	}
+}
+
+.cover-slide {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	position: relative;	
+	@include headerSpaceCalc(min-height);
+	&:not(.active) {
+		display: none;
+	}
+}
+
+
+.cover-image {
 	width: 100vw;
-	height: calc(100vh - 6.5rem);
+	height: 100%;
+	@include headerSpaceCalc(min-height);
 	position: absolute;
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
-	@include md {
-		height: 100%;
-	}
+	z-index: -1;
 }
 
-#cover-card {
+.cover-card {
 	width: 100%;
-	padding-top: 6rem;
   margin-top: auto;
   position: relative;
   z-index: 1;
+  @include navSpace(padding-top);
+  &::before {
+  	content: '';
+  	width: 100%;
+  	height: 1rem;
+  	display: block;
+  }
   .row {
 		justify-content: center;
   }
-  .single-happening & {
-		padding-top: calc(50vh);
+	@include md {
+		// @include navSpaceCalc(padding-top);
+		padding-left: 0 !important;
+		padding-right: 0 !important;
+		.row .col {
+			// padding-right: 1.8rem !important;
+	    // padding-left: 1.8rem !important;
+		}
 	}
 }
-#cover-header {
+.cover-header {
 	padding-top: 15px;
 	padding-bottom: 15px;
-	background-color: $light-alpha;
+	background-color: $white-alpha;
 }
-#cover-content {
+.cover-content {
 	padding-top: 15px;
 	padding-bottom: 15px;
 	background-color: white;
 	.slideshow {
 		margin-bottom: 3rem;
 	}
+	@include md {
+		.row &.col {
+			// padding-left: 1.6rem;
+			// padding-right: 1.6rem;
+		}
+	}
+
 }
 
-#skip-to-content {
+.skip-to-content {
 	width: 3rem;
-	height: 3rem;
+	height: 3.5rem;
 	display: block;
 	margin: auto;
 	background-size: 2rem;
-	background-position: center 1.25rem;
+	background-position: center;
 	background-repeat: no-repeat;
 	background-image: url(images/down-arrow.svg);
 	&:hover {
@@ -62,9 +115,12 @@
 		background-color: white;
 		background-image: url(images/down-arrow-blue.svg);
 	}
+	@include sm {
+		display: none;
+	}
 }
 
-#highlight-text {
+.highlight-text {
 	height: 100%;
 	margin: auto 0;
 	p {
@@ -76,15 +132,46 @@
 		line-height: 1.3em;
 	}
 }
-#close {
+.close {
 	color: white;
 	padding: 1rem 1rem 1rem 2rem;
 	float: right;
 	@include xs-text;
 	@include caps-text;
-	// background-image: url(images/close-white.svg);
 	background-position: left center;
 	background-repeat: no-repeat;
 	background-size: 1rem;
 	cursor: pointer;
+}
+
+.hn-button {
+	width: 10em;
+	height: 10em;
+	display: flex;
+	float: right;
+	border-radius: 50%;
+	background-color: $blue;
+	box-shadow: 0.2em 0.3em 0.5em 0.1em rgb(0 0 0 / 80%);
+	text-align: center;
+	@include sm-text;
+	@include caps-text;
+	div {
+		margin: auto;
+	}
+	&, &:hover, &:visited, &:focus {
+		color: white;
+	}
+	@include lg-up {
+		position: absolute;
+		right: 2rem;
+		@include navSpace(top);
+		margin: 2rem 0 0 0 !important;
+	}
+}
+
+.cover-map {
+	svg {
+		width: 100%;
+		height: auto;
+	}
 }

@@ -8,7 +8,8 @@ jQuery(document).ready(function($) {
 	*****************************/
 
 	const burgers = document.querySelectorAll(".burger"),
-				mobileNav = document.querySelector("nav#mobile-nav");
+				mobileNav = document.querySelector("nav#mobile-nav"),
+				menuItems = document.querySelectorAll("#main-nav .menu-item-button");
 
 	const onBurgerClick = (e) => {
 		mobileNav.classList.toggle("open");
@@ -120,7 +121,12 @@ jQuery(document).ready(function($) {
 	const togglePastButton = document.querySelector("#toggle-past-button");
 	if(togglePastButton) {
 		togglePastButton.addEventListener("click", (e) => {
-			body.classList.toggle("hide-past");
+			body.classList.toggle("show-past");
+			if(body.classList.contains("show-past")) {
+				togglePastButton.setAttribute("aria-expanded", "true");
+			} else {
+				togglePastButton.setAttribute("aria-expanded", "false");
+			}
 		});
 	}
 
@@ -144,6 +150,7 @@ jQuery(document).ready(function($) {
 	const moveSlideshow = (slideshow, direction) => {
 		const mediaSlides = slideshow.querySelectorAll(".slide.media"),
 					captionSlides = slideshow.querySelectorAll(".slide.caption"),
+					coverSlides = slideshow.querySelectorAll(".cover-slide"),
 					slidesLength = parseInt(slideshow.dataset.length),
 					currentIndex = parseInt(slideshow.dataset.active);
 		
@@ -165,11 +172,27 @@ jQuery(document).ready(function($) {
 
 		slideshow.dataset.active = newIndex;
 
-		mediaSlides[currentIndex].classList.remove("active");
-		captionSlides[currentIndex].classList.remove("active");
+		if(mediaSlides[currentIndex]) {
+			mediaSlides[currentIndex].classList.remove("active");
+		}
+		if(captionSlides[currentIndex]) {
+			captionSlides[currentIndex].classList.remove("active");
+		}
+		if(coverSlides[currentIndex]) {
+			coverSlides[currentIndex].classList.remove("active");
+			menuItems[currentIndex].classList.remove("active");
+		}
 
-		mediaSlides[newIndex].classList.add("active");
-		captionSlides[newIndex].classList.add("active");
+		if(mediaSlides[newIndex]) {
+			mediaSlides[newIndex].classList.add("active");
+		}
+		if(captionSlides[newIndex]) {
+			captionSlides[newIndex].classList.add("active");
+		}
+		if(coverSlides[newIndex]) {
+			coverSlides[newIndex].classList.add("active");
+			menuItems[newIndex].classList.add("active");
+		}
 
 	}
 
@@ -177,6 +200,25 @@ jQuery(document).ready(function($) {
 	slideshows.forEach((slideshow) => {
 		slideshowSetup(slideshow);
 	});
+
+	const coverSlideshow = document.querySelector("#cover-slideshow");
+	if(coverSlideshow) {
+		setInterval(() => {
+			if(!coverSlideshow.classList.contains("paused")) {
+				// moveSlideshow(coverSlideshow, "next");
+			}
+		}, 4000);
+
+		coverSlideshow.addEventListener("mouseover", (e) => {
+			coverSlideshow.classList.add("paused");
+		});
+
+		coverSlideshow.addEventListener("mouseleave", (e) => {
+			coverSlideshow.classList.remove("paused");
+		});
+
+	}
+	
 
 
 	/*****************************
@@ -226,12 +268,32 @@ jQuery(document).ready(function($) {
 		});
 	});
 
+
+	/*****************************
+	************MASONRY***********
+	*****************************/
+
+	const masonryElems = document.querySelectorAll(".masonry");
+	masonryElems.forEach((masonryElem) => {
+		const masonryInst = new Masonry(masonryElem, {
+			itemSelector: '.col',
+			percentPosition: true,
+			// gutter: '.gutter-sizer',
+			transitionDuration: 0,
+		});
+	});
+
+
 	/*****************************
 	***********SENSE MAP**********
 	*****************************/
 
 	const senseMap = document.querySelector("#sense-map");
 	if(senseMap) {
+		const senseForm = document.querySelector("#sense-form"),
+					location = senseForm.dataset.location,
+					wpForm = document.querySelector(`#comment-form-${location}`);
+
 		const userMarker = senseMap.querySelector("#user-marker");
 		senseMap.addEventListener("mousemove", function(e) {
 			if(userMarker.classList.contains("placed") || userMarker.classList.contains("submitted")) {
@@ -308,10 +370,7 @@ jQuery(document).ready(function($) {
 			}
 		});
 
-		const senseForm = document.querySelector("#sense-form"),
-					location = senseForm.dataset.location,
-					wpForm = document.querySelector(`#comment-form-${location}`),
-					userTextarea = senseForm.querySelector("textarea"),
+		const userTextarea = senseForm.querySelector("textarea"),
 					senseTextarea = document.querySelector("[data-name=\"sense_comment\"] textarea");
 
 		wpForm.querySelector("[data-name=\"overlay\"] select").value = "sense";

@@ -1,21 +1,14 @@
 const webpack = require("webpack"),
 			path = require("path"),
 			env = require("yargs").argv.env,
+			version = require("./package.json").version,
 			autoprefixer = require("autoprefixer"),
 			MiniCssExtractPlugin = require("mini-css-extract-plugin"),
-			OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-let mode, outputJS;
-
-if(env === "build") {
-	mode = "production";
-	outputJS = "script.min.js";
-} else {
-	mode = "development";
-	outputJS = "script.js";
-}
+			OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin"),
+			FileManagerPlugin = require('filemanager-webpack-plugin');
 
 const config = {
-	mode: mode,
+	mode: env === "build" ? "production" : "development",
 	entry: [
 		__dirname + "/src/script.js",
 		__dirname + "/src/style.scss"
@@ -23,7 +16,7 @@ const config = {
 	devtool: "source-map",
 	output: {
 		path: path.resolve(__dirname + "/assets"),
-		filename: outputJS,
+		filename: env === "build" ? "script.min.js" : "script.js",
 		library: "nychvs",
 		libraryTarget: "umd",
 		umdNamedDefine: true,
@@ -88,7 +81,39 @@ const config = {
 		new MiniCssExtractPlugin({
 			filename: env === "build" ? "style.min.css" : "style.css",
 			chunkFilename: "[id].css"
-		})
+		}),
+		new FileManagerPlugin( env === "build" ? {
+			events: {
+				onEnd: {
+					delete: [__dirname + "/dist", __dirname + "/*.zip"],
+					copy: [
+						{
+							source: __dirname + "/*.php",
+							destination: __dirname + "/dist"
+						},
+						{
+							source: __dirname + "/parts/*.php",
+							destination: __dirname + "/dist/parts"
+						},
+						{
+							source: __dirname + "/*.css",
+							destination: __dirname + "/dist"
+						},
+						{
+							source: __dirname + "/assets",
+							destination: __dirname + "/dist/assets"
+						},
+					],
+					archive: [
+						{
+							source: __dirname + "/dist",
+							destination: __dirname + "/coi." + version + ".zip"
+						},
+					],
+				},
+			},
+			runTasksInSeries: true,
+		} : {}),
 	],
 	optimization: {
 		minimize: env === "build" ? true : false,

@@ -7,7 +7,6 @@
 @use "covers";
 @use "pages";
 @use "loops";
-@use "footer";
 
 
 /*****************************
@@ -56,19 +55,30 @@ p {
 }
 
 h1 {
-	width: 100%;
-	padding: 2rem 0;
-	margin: 2rem 0;
-	text-align: center;
-	font-weight: 500;
-	@include sm-text;
-	@include caps-text;
+	// width: 100%;
+	// padding: 2rem 0;
+	// margin: 2rem 0;
+	// text-align: center;
+	// font-weight: 500;
+	// @include sm-text;
+	// @include caps-text;
+
+	font-size: inherit;
+	line-height: inherit;
+	font-weight: inherit;
 }
 
 h2 {
-	margin: 0;
-	font-weight: 200;
-	@include xl-text;
+	// margin: 0;
+	// font-weight: 200;
+	// @include xl-text;
+
+	// font-size: inherit;
+	// line-height: inherit;
+
+	font-size: inherit;
+	line-height: inherit;
+	font-weight: inherit;
 }
 
 h3 {
@@ -92,6 +102,15 @@ h5 {
 	@include caps-text;
 }
 
+.page-title {
+	width: 100%;
+	padding: 2rem 0;
+	margin: 2rem 0;
+	text-align: center;
+	@include sm-text;
+	@include caps-text;
+}
+
 a, a:hover, a:focus, a:visited {
 	color: $dark;
 	text-decoration: none;
@@ -99,16 +118,24 @@ a, a:hover, a:focus, a:visited {
 
 .container {
 	max-width: 1920px !important;
-	padding: 0 3rem;
+	padding-left: 3rem;
+	padding-right: 3rem;
 	@include md {
-		padding: 0 2rem;
+		padding-left: 2rem;
+		padding-right: 2rem;
 	}
 	@include sm {
-		padding: 0 1rem;
+		padding-left: 1rem;
+		padding-right: 1rem;
 	}
 	@include xs {
-		padding: 0 .8rem;
+		padding-left: .8rem;
+		padding-right: .8rem;
 	}
+}
+
+.blocks-gallery-grid {
+	width: 100%;
 }
 
 .sr-only {
@@ -122,19 +149,40 @@ a, a:hover, a:focus, a:visited {
 	border: 0;
 }
 
+.no-style {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+.back-blur {
+	backdrop-filter: blur(3px);
+	@include sm {
+		background-color: white !important;
+		backdrop-filter: unset;
+	}
+}
+
 /*****************************
-***********FOOTER*************
+************FOOTER************
 *****************************/
 
 footer {
 	background-color: $light;
-	margin: 2rem 0 0 0;
+	margin: 4rem 0 0 0;
 	padding: 2rem 0; 
+	.icons {
+		@include sm {
+			margin-bottom: 1rem;
+			a {
+				&:first-child {
+					margin: 0;
+				}
+			}
+			img {
+				height: 60px;
+				max-width: 100%;
+			}
+		}
+	}
 }
-
-
-
-
-
-
-

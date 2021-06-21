@@ -42,7 +42,7 @@ $spaces: (
 $base-fs: 18px;
 
 $xs-fs: .68rem; //12px
-$sm-fs: .88rem; //16px
+$sm-fs: .87rem; //16px
 $md-fs: 1.35rem; //24px
 $lg-fs: 1.55rem; //28px
 $xl-fs: 2.55rem; //46px
@@ -53,10 +53,10 @@ $xl-fs: 2.55rem; //46px
 	// 	font-size: $base-fs;
 	// }
 	font-size: $base-fs;
-	@include lg {
-		
+	@include xl {
+		font-size: 16px;
 	}
-	@include md {
+	@include lg {
 		font-size: 14px;
 	}
 	@include sm {
@@ -69,13 +69,13 @@ $xl-fs: 2.55rem; //46px
 
 @mixin base-text {
 	@include base-fs;
-	line-height: 1.2em;
+	line-height: 1.3em;
 	font-weight: 400;
 }
 
 @mixin xs-text {
 	font-size: $xs-fs;
-	line-height: 1.2em;
+	line-height: 1.3em;
 	font-weight: 400;
 	@include sm {
 		font-size: $sm-fs;
@@ -84,26 +84,29 @@ $xl-fs: 2.55rem; //46px
 
 @mixin sm-text {
 	font-size: $sm-fs;
-	line-height: 1.2em;
+	line-height: 1.3em;
 	font-weight: 200;
 }
 
 @mixin md-text {
 	font-size: $md-fs;
-	line-height: 1.2em;
+	line-height: 1.3em;
 	font-weight: 200;
+	letter-spacing: .05em;
 }
 
 @mixin lg-text {
 	font-size: $lg-fs;
-	line-height: 1.2em;
+	line-height: 1.3em;
 	font-weight: 200;
+	letter-spacing: .05em;
 }
 
 @mixin xl-text {
 	font-size: $xl-fs;
-	line-height: 1.2em;
+	line-height: 1.3em;
 	font-weight: 200;
+	letter-spacing: .05em;
 }
 
 @mixin caps-text {
@@ -119,6 +122,12 @@ $xl-fs: 2.55rem; //46px
 
 @mixin xl {
 	@media only screen and (max-width: 1440px) {
+	  @content;
+	}
+}
+
+@mixin lg-up {
+	@media only screen and (min-width: 1200px) {
 	  @content;
 	}
 }
@@ -145,4 +154,73 @@ $xl-fs: 2.55rem; //46px
 	@media only screen and (max-width: 576px) {
 	  @content;
 	}
+}
+
+//////////////////////////////
+////////HEADER SPACES/////////
+//////////////////////////////
+
+$headerSpace: 7rem;
+$navSpace: 5rem;
+$navSpaceSm: 2.5rem;
+$fullHeaderSpace: #{$headerSpace + $navSpace};
+$fullHeaderSpaceSm: #{$headerSpace + $navSpaceSm};
+
+@mixin headerSpace($property) {
+	#{$property}: $headerSpace;
+}
+
+@mixin navSpace($property) {
+	#{$property}: $navSpace;
+}
+
+@mixin fullHeaderSpace($property) {
+	#{$property}: $fullHeaderSpace;
+	@include md {
+		#{$property}: $fullHeaderSpaceSm;
+	}
+}
+
+@mixin navSpaceCalc($property) {
+	#{$property}: calc(100vh - #{$navSpace});
+	@include md {
+		#{$property}: calc(90vw - #{$navSpace});
+	}
+	@include sm {
+		#{$property}: calc(100vw - #{$navSpace});
+	}
+}
+
+@mixin headerSpaceCalc($property) {
+	#{$property}: calc(100vh - #{$headerSpace});
+	@include md {
+		#{$property}: calc(90vw - #{$headerSpace});
+	}
+	@include sm {
+		#{$property}: calc(100vw - #{$headerSpace});
+	}
+}
+
+@mixin fullHeaderSpaceCalc($property) {
+	#{$property}: calc(100vh - #{$fullHeaderSpace});
+	@include md {
+		#{$property}: calc(90vw - #{$headerSpace});
+	}
+	@include sm {
+		#{$property}: calc(100vw - #{$headerSpace});
+	}
+}
+
+.mt-nav {
+	margin-top: $navSpace !important;
+}
+.mb-nav {
+	margin-bottom: $navSpace !important;
+}
+
+.pt-nav {
+	padding-top: $navSpace !important;
+}
+.pb-nav {
+	padding-bottom: $navSpace !important;
 }

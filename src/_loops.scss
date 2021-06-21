@@ -7,6 +7,9 @@
 		padding-right: .8rem;
 		padding-left: .8rem;
 	}
+	.gutter-sizer {
+		width: .8rem;
+	}
 	&.no-gutter {
 		margin-right: 0;
 		margin-left: 0;
@@ -15,6 +18,9 @@
 		> .col {
 			padding-right: 0;
 			padding-left: 0;
+		}
+		.gutter-sizer {
+			width: 0;
 		}
 	}
 	&.sm-gutter {
@@ -26,8 +32,35 @@
 			padding-right: .3rem;
 			padding-left: .3rem;
 		}
+		.gutter-sizer {
+			width: .3rem;
+		}
+	}
+	&.masonry {
+		margin-right: 0;
+		margin-left: 0;
+		padding-right: 0;
+		padding-left: 0;
 	}
 }
+
+.order-1 {
+	order: 1;
+}
+.order-2 {
+	order: 2;
+}
+.order-3 {
+	order: 3;
+}
+
+ol.row, ul.row {
+	margin-top: 0;
+	margin-bottom: 0;
+	padding-left: 0;
+	padding-right: 0;
+}
+
 /*****************************
 ************THUMBS************
 *****************************/
@@ -96,7 +129,11 @@ a.thumb-link-wrapper {
 
 
 .card {
-	margin-bottom: 30px;
+	margin-bottom: .6rem;
+	display: block;
+	position: relative;
+	border: 0;
+	border-radius: 0;
 }
 
 .card-content {
@@ -107,11 +144,14 @@ a.thumb-link-wrapper {
 
 .card-header {
 	padding: 0 0 1rem 0;
+	background-color: transparent;
+	border: 0;
 }
 
 .card-title {
 	@include lg-text;
-	padding: 0 4rem .25rem 0;
+	margin: 0;
+	padding: 0 4rem 0 0;
 	color: $dark;
 }
 
@@ -136,12 +176,6 @@ a.thumb-link-wrapper {
 	border: 0 solid $dark;
 	border-top-width: 1px;
 	padding: 2rem 0;
-	&.past {
-		opacity: .5;
-		.hide-past & {
-			display: none;
-		}
-	}
 }
 
 .cal-link {
@@ -257,6 +291,10 @@ a.thumb-link-wrapper {
 				margin-left: .5rem;
 				background-image: url(images/quote-r.svg);
 			}
+		}
+		cite {
+			margin: 0 0 0 2.5rem;
+			font-style: normal;
 		}
 	}
 }
