@@ -14,7 +14,7 @@ body.page-template-page-about {
 	}
 	.wp-block-video {
 		width: 183.33%;
-    margin-left: -41.666%;
+		margin-left: -41.666%;
 		@include md {
 			width: 150%;
 			margin-left: -25%;
@@ -43,6 +43,21 @@ body.page-template-page-about {
 	}
 }
 
+#home-video-button {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding-left: 3.5em;
+  background-image: url(images/play-white.svg);
+  background-position: 0.7em center;
+  background-repeat: no-repeat;
+  background-size: 2em;
+  line-height: 1em;
+}
+.playing > #home-video-button {
+  background-image: url(images/pause-white.svg);
+}
+
 /*****************************
 ********LOCAL STORIES*********
 *****************************/
@@ -67,7 +82,7 @@ body.page-template-page-about {
 			margin-top: 4rem;
 		}
 	}
-	.featured-locations {
+	.upcoming-hosts {
 		position: relative;
 		.thumb {
 			margin-bottom: 0;
@@ -92,12 +107,12 @@ body.page-template-page-about {
 *****************************/
 
 #cover-story {
-	// .cover-header {
-	// 	@include md {
-	// 		padding-left: 1.6rem;
-	// 		padding-right: 1.6rem;
-	// 	}
-	// }
+	.cover-header {
+		@include md {
+			padding-left: 1.6rem;
+			padding-right: 1.6rem;
+		}
+	}
 }
 #story-map {
 	position: relative;
@@ -178,6 +193,39 @@ body.page-template-page-about {
 	}
 	.caption {
 		padding: 0 1rem 1rem 1rem;
+	}
+}
+
+/*****************************
+********HAPPENING NOW*********
+*****************************/
+
+
+//NEEDS FIXING
+#cover-happening-now .cover-card {
+	@include headerSpaceCalc(margin-top);
+}
+
+/*****************************
+***********HAPPENING**********
+*****************************/
+
+.single-happening {
+	.cover-card {
+		padding-top: calc(50vh - #{$headerSpace});
+	}
+}
+
+#cover-happening .cover-card {
+	padding-top: 25%;
+	@include sm {
+		padding-left: 0.8rem !important;
+		padding-right: 0.8rem !important;
+	}
+	@include md {
+		padding-top: 0;
+		padding-left: 1.6rem !important;
+		padding-right: 1.6rem !important;
 	}
 }
 
@@ -419,16 +467,5 @@ body.page-template-page-calendar {
 	}
 	body.hide-past &::before {
 		transform: rotate(45deg);
-	}
-}
-
-
-
-
-///
-
-.single-happening {
-	.cover-card {
-		padding-top: calc(50vh - #{$headerSpace});
 	}
 }

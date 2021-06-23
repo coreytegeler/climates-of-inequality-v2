@@ -1,22 +1,39 @@
 <?php
 /* Template Name: Local Stories */
 get_header();
-$home_page = get_post( pll_get_post( get_page_by_path( 'home' )->ID ) );
+$ls_page = get_trans( 'local-stories' );
 ?>
 
-<div class="container mt-auto featured-locations white-alpha-bg">
-	<?php if( $featured_locations = get_field( 'featured_locations', $home_page ) ) { 
-		$featured_locations = array_slice( $featured_locations, 0, 3 ); ?>
+<div class="container mt-auto upcoming-hosts white-alpha-bg">
+	<?php if( $upcoming_hosts = get_field( 'upcoming_hosts', $ls_page ) ) { ?>
+
+		<div class="row d-lg-none">
+
+			<div class="col col-6 pt-sm pb-sm xs-text caps-text d-flex">
+				<div class="mt-auto mb-auto"><?= pll__( 'Upcoming Hosts' ); ?></div>
+			</div>
+
+			<div class="col col-6 pt-sm pb-sm d-flex">
+				<a href="" class="arrow-link ml-auto">
+					<span class="xs-text">
+						<?= pll__( 'See All' ); ?>
+					</span>
+				</a>
+			</div>
+
+		</div>
+
 		<div class="row">
 
 			<div class="col col-sm-12 col-lg-8 col-xl-6 offset-sm-0 offset-lg-4 offset-xl-6">
-				<ol class="row sm-gutter light-alpha-bg pb-sm">
-					<?php foreach( $featured_locations as $location ) {
+				<ol class="row light-alpha-bg pb-sm">
+					<?php foreach( $upcoming_hosts as $host ) {
+						$location = $host['location'];
 						$story = get_story( $location ); ?>
 
 						<li role="article" class="thumb col col-12 col-sm-4">
 
-							<a href="<?= the_permalink( $story ) ?>" class="thumb-link-wrapper white-bg">
+							<a href="<?= the_permalink( $story ) ?>" class="thumb-link-wrapper">
 
 								<div class="row">
 

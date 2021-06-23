@@ -51,21 +51,20 @@
 }
 
 .white-alpha-bg {
-	background-color: $white-alpha;
+	background-color: $white-alpha !important;
 }
 
 .light-alpha-bg {
-	background-color: $light-alpha;
+	background-color: $light-alpha !important;
 }
 
 .medium-alpha-bg {
-	background-color: $medium-alpha;
+	background-color: $medium-alpha !important;
 }
 
 .blue-bg {
 	background-color: $blue !important;
 }
-
 
 .mt-auto {
 	margin-top: auto;
@@ -78,6 +77,18 @@
 }
 .ml-auto {
 	margin-left: auto;
+}
+
+.position-sm-static {
+	@include sm {
+		position: static;
+	}
+}
+
+.position-md-static {
+	@include md {
+		position: static;
+	}
 }
 
 @each $size, $space in $spaces {

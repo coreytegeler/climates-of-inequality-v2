@@ -124,15 +124,8 @@ function get_results( $args ) {
 			}
 		}
 	}
-	// $results = order_results( $results );
 	return $results;
 }
-
-// function order_results( $results ) {
-// 	foreach( $results ) {
-
-// 	}
-// }
 
 function search_extend( $query ) {
  	if( $query->get( 's' ) ) {
@@ -148,44 +141,6 @@ function search_extend( $query ) {
   }
 }
 add_filter('pre_get_posts', 'search_extend');
-
-// function search_join( $join ) {
-// 	global $wpdb;
-
-// 	if ( is_search() ) {    
-// 		$join .=' LEFT JOIN '.$wpdb->postmeta. ' ON '. $wpdb->posts . '.ID = ' . $wpdb->postmeta . '.post_id ';
-// 	}
-
-// 	return $join;
-// }
-// add_filter('posts_join', 'search_join' );
-
-
-// function search_where( $where ) {
-// 	global $pagenow, $wpdb;
-
-// 	if ( is_search() ) {
-// 		$where = preg_replace(
-// 			"/\(\s*".$wpdb->posts.".post_title\s+LIKE\s*(\'[^\']+\')\s*\)/",
-// 			"(".$wpdb->posts.".post_title LIKE $1) OR (".$wpdb->postmeta.".meta_value LIKE $1)"
-// 		, $where );
-// 	}
-
-// 	return $where;
-// }
-// add_filter( 'posts_where', 'search_where' );
-
-// function search_distinct( $where ) {
-// 	global $wpdb;
-
-// 	if ( is_search() ) {
-// 		return "DISTINCT";
-// 	}
-
-// 	return $where;
-// }
-// add_filter( 'posts_distinct', 'search_distinct' );
-
 
 //////////////////////////////////////////////
 //////////////////POST TYPES//////////////////
@@ -690,7 +645,7 @@ function update_metabox_label( $field_groups ){
 		'press',
 		'happening',
 		'resource',
-		'storytelling_mediatory'
+		'storytelling_media'
 	);
 	if( function_exists( 'get_current_screen' ) && in_array( get_current_screen()->post_type, $post_types ) ) {
 		foreach( $field_groups as $i => $field_group ){
@@ -705,50 +660,19 @@ function update_metabox_label( $field_groups ){
 }
 add_filter( 'acf/get_field_groups', 'update_metabox_label' );
 
-function remove_editors() {
-	// remove_post_type_support( 'location', 'editor' );
-	// remove_post_type_support( 'story', 'editor' );
-	// remove_post_type_support( 'event', 'editor' );
-	// remove_post_type_support( 'partner', 'editor' );
-	// remove_post_type_support( 'project', 'editor' );
-	// remove_post_type_support( 'press', 'editor' );
-	// remove_post_type_support( 'resource', 'editor' );
-}
-add_action( 'init', 'remove_editors', 100 );
-
-// function enable_gutenberg_post_type( $can_edit, $post ) {
-	
-// 	if ( empty( $post->ID ) ) {
-// 		return $can_edit;
-// 	}
-	
-// 	if ( $post_type === 'resource' ) {
-// 		return false;
-// 	}
-	
-// 	return $can_edit;
-	
-// }
-
-// add_filter('use_block_editor_for_post_type', 'enable_gutenberg_post_type', 10, 2);
-
-
-
-// function enable_gutenberg_post_type( $can_edit, $post_type ) {
-// 	global $post;
-// 	if ( empty( $post->ID ) ) return $can_edit;
-// 	if ( in_array( $post_type, array( 'happening', 'event' ) ) ) {
-// 		return true;
-// 	} else {
-// 		return false;
-// 	}
-// 	return $can_edit;
-// }
-// add_filter( 'use_block_editor_for_post_type', 'enable_gutenberg_post_type', 10, 2 );
-
 if( function_exists( 'acf_add_options_page' ) ) {
 	acf_add_options_page();	
 }
+
+function remove_dist_page_templates( $page_templates ) {
+	foreach ( $page_templates as $filename => $template ) {
+		if( strpos( $filename, 'dist/' ) !== false ) {
+			unset( $page_templates[$filename] );
+		}
+	}
+	return $page_templates;
+}
+add_filter( 'theme_page_templates', 'remove_dist_page_templates' );
 
 //////////////////////////////////////////////
 /////////////////////MEDIA////////////////////
@@ -808,6 +732,15 @@ function get_trans( $slug ) {
 }
 
 function get_story( $location ) {
+
+	if( is_object( $location ) ) {
+		$location_id = $location->ID;
+	} else if( is_int( $location ) ) {
+		$location_id = $location;
+	} else {
+		return;
+	}
+
 	$args = array(
 		'post_type' => 'story',
 		'meta_key' => 'location',
@@ -817,26 +750,12 @@ function get_story( $location ) {
 
 	$stories = get_posts( $args );
 
-	if( is_array( $stories ) && sizeof( $stories ) ) {
+	if( is_array( $stories ) && sizeof( $stories ) > 0 ) {
 		return $stories[0];
 	} else {
 		return false;
 	}
 }
-
-// function get_home() {
-// 	$lang = pll_current_language();
-// 	switch( $lang ) {
-// 		case 'en':
-// 			$home_slug = 'home';
-// 			break;
-// 		case 'es':
-// 			$home_slug = 'principal';
-// 			break;
-// 	}
-// 	$home_page = get_page_by_path( $home_slug );
-// 	return $home_page;
-// }
 
 function sort_contribs( $contribs ) {
 	if( $contribs && is_array( $contribs ) ) {
@@ -904,12 +823,10 @@ function get_dates( $post ) {
 	$start_datetime = $start_obj ? get_datetime( $start_str ) : null;
 	$end_datetime = $end_obj ? get_datetime( $end_str ) : null;
 
-	// $start_date = '';
 	$start_day = $start_obj ? date_format( $start_obj, 'd' ) : null;
 	$start_month = pll__( $start_obj ? date_format( $start_obj, 'F' ) : null );
 	$start_year = $start_obj ? date_format( $start_obj, 'Y' ) : null;
 
-	// $end_date = '';
 	$end_day = $end_obj ? date_format( $end_obj, 'd' ) : null;
 	$end_month = pll__( $end_obj ? date_format( $end_obj, 'F' ) : null );
 	$end_year = $end_obj ? date_format( $end_obj, 'Y' ) : null;

@@ -10819,15 +10819,15 @@ textarea.form-control-lg {
 }
 
 .white-alpha-bg {
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(255, 255, 255, 0.9) !important;
 }
 
 .light-alpha-bg {
-  background-color: rgba(245, 245, 245, 0.9);
+  background-color: rgba(245, 245, 245, 0.9) !important;
 }
 
 .medium-alpha-bg {
-  background-color: rgba(65, 66, 66, 0.05);
+  background-color: rgba(65, 66, 66, 0.05) !important;
 }
 
 .blue-bg {
@@ -10848,6 +10848,18 @@ textarea.form-control-lg {
 
 .ml-auto {
   margin-left: auto;
+}
+
+@media only screen and (max-width: 768px) {
+  .position-sm-static {
+    position: static;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .position-md-static {
+    position: static;
+  }
 }
 
 .mt-xs {
@@ -11620,6 +11632,13 @@ nav#mobile-nav.open .inner {
     min-height: calc(100vw - 7rem);
   }
 }
+.cover-image video {
+  min-width: 100%;
+  min-height: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
 
 .cover-card {
   width: 100%;
@@ -11792,6 +11811,22 @@ body.page-template-page-about .wp-block-video {
   align-content: space-between;
 }
 
+#home-video-button {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding-left: 3.5em;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 50 50'%3e %3cpath id='Exclusion_2' data-name='Exclusion 2' d='M25,50A25,25,0,1,1,50,25,25.031,25.031,0,0,1,25,50ZM20,17.5h0V35L35,26.25,20,17.5Z' fill='%23ffffff'/%3e %3c/svg%3e");
+  background-position: 0.7em center;
+  background-repeat: no-repeat;
+  background-size: 2em;
+  line-height: 1em;
+}
+
+.playing > #home-video-button {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='50' height='50' viewBox='0 0 50 50'%3e%3cdefs%3e%3cclipPath id='a'%3e%3crect width='50' height='50' transform='translate(0)' fill='%23ffffff'/%3e%3c/clipPath%3e%3c/defs%3e%3cg transform='translate(497.974 -468.026)'%3e%3cg transform='translate(-497.974 468.026)' clip-path='url(%23a)'%3e%3cpath d='M25.036,0A25.036,25.036,0,1,1,0,25.036,25.007,25.007,0,0,1,25.036,0M15.661,12.571h6.286V37.5H15.661Zm12.465,0h6.286V37.5H28.125Z' transform='translate(-0.036 -0.036)' fill='%23ffffff' fill-rule='evenodd'/%3e%3c/g%3e%3c/g%3e%3c/svg%3e");
+}
+
 /*****************************
 ********LOCAL STORIES*********
 *****************************/
@@ -11818,13 +11853,13 @@ body.page-template-page-about .wp-block-video {
     margin-top: 4rem;
   }
 }
-#cover-local-stories .featured-locations {
+#cover-local-stories .upcoming-hosts {
   position: relative;
 }
-#cover-local-stories .featured-locations .thumb {
+#cover-local-stories .upcoming-hosts .thumb {
   margin-bottom: 0;
 }
-#cover-local-stories .featured-locations .thumb-content {
+#cover-local-stories .upcoming-hosts .thumb-content {
   padding: 0.75rem 0.5rem 0.5rem 0.5rem;
 }
 #cover-local-stories .hn-button {
@@ -11838,6 +11873,13 @@ body.page-template-page-about .wp-block-video {
 /*****************************
 **********LOCAL STORY*********
 *****************************/
+@media only screen and (max-width: 992px) {
+  #cover-story .cover-header {
+    padding-left: 1.6rem;
+    padding-right: 1.6rem;
+  }
+}
+
 #story-map {
   position: relative;
   display: flex;
@@ -11919,6 +11961,47 @@ body.page-template-page-about .wp-block-video {
 }
 .marker-panel .caption {
   padding: 0 1rem 1rem 1rem;
+}
+
+/*****************************
+********HAPPENING NOW*********
+*****************************/
+#cover-happening-now .cover-card {
+  margin-top: calc(100vh - 7rem);
+}
+@media only screen and (max-width: 992px) {
+  #cover-happening-now .cover-card {
+    margin-top: calc(90vw - 7rem);
+  }
+}
+@media only screen and (max-width: 768px) {
+  #cover-happening-now .cover-card {
+    margin-top: calc(100vw - 7rem);
+  }
+}
+
+/*****************************
+***********HAPPENING**********
+*****************************/
+.single-happening .cover-card {
+  padding-top: calc(50vh - 7rem);
+}
+
+#cover-happening .cover-card {
+  padding-top: 25%;
+}
+@media only screen and (max-width: 768px) {
+  #cover-happening .cover-card {
+    padding-left: 0.8rem !important;
+    padding-right: 0.8rem !important;
+  }
+}
+@media only screen and (max-width: 992px) {
+  #cover-happening .cover-card {
+    padding-top: 0;
+    padding-left: 1.6rem !important;
+    padding-right: 1.6rem !important;
+  }
 }
 
 /*****************************
@@ -12170,10 +12253,6 @@ body.page-template-page-calendar:not(.show-past) .event.past {
 }
 body.hide-past #toggle-past-button::before {
   transform: rotate(45deg);
-}
-
-.single-happening .cover-card {
-  padding-top: calc(50vh - 7rem);
 }
 
 .row {

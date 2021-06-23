@@ -29,17 +29,14 @@ $map = get_template_directory_uri() . '/assets/images/map.svg';
 
 
 <?php
-// MOVE THIS FIELD TO LS PAGE
-if( $featured_locations = get_field( 'featured_locations', $home_page ) ) { 
-	$featured_locations = array_slice( $featured_locations, 0, 3 ); ?>
+if( $upcoming_hosts = get_field( 'upcoming_hosts', $page ) ) { 
+	$upcoming_hosts = array_slice( $upcoming_hosts, 0, 3 ); ?>
 
-	<div class="container d-none d-lg-block featured-locations">
+	<div class="container d-none d-lg-block upcoming-hosts">
 		<div class="row">
 
-			<div class="col col-0 col-sm-0 col-lg-4 col-xl-6"></div>
-
-			<div class="col col-12 col-sm-12 col-lg-8 col-xl-6">
-				<div class="row sm-gutter light-alpha-bg">
+			<div class="col col-12 col-sm-12 col-lg-8 col-xl-6 offset-sm-0 offset-lg-4 offset-xl-6 light-alpha-bg">
+				<div class="row sm-gutter">
 
 					<div class="col col-6 pt-sm pb-sm xs-text caps-text d-flex">
 						<div class="mt-auto mb-auto"><?= pll__( 'Upcoming Hosts' ); ?></div>
@@ -53,24 +50,26 @@ if( $featured_locations = get_field( 'featured_locations', $home_page ) ) {
 						</a>
 					</div>
 
-					<?php foreach( $featured_locations as $location ) {
-						$story = get_story( $location ); ?>
+					<?php foreach( $upcoming_hosts as $host ) {
+						$story = get_story( $host['location'] );
+						if( $story ) { ?>
 
-						<div class="thumb col col-12 col-sm-4">
+							<div class="thumb col col-12 col-sm-4">
 
-							<a href="<?= the_permalink( $story ) ?>" class="thumb-link-wrapper" aria-hidden="true" tabindex="-1">
+								<a href="<?= the_permalink( $story ) ?>" class="thumb-link-wrapper" aria-hidden="true" tabindex="-1">
 
-								<div class="thumb-image square" <?= post_bg( $story ); ?>>
-									<div class="square-label">
-										<?= pll__( 'Local Story Event' ); ?>
+									<div class="thumb-image square" <?= post_bg( $story ); ?>>
+										<div class="square-label">
+											<?= pll__( 'Local Story Event' ); ?>
+										</div>
 									</div>
-								</div>
 
-							</a>
+								</a>
 
-						</div>
+							</div>
 
-					<?php } ?>
+						<?php } 
+					} ?>
 				</div>
 			</div>
 

@@ -5,12 +5,12 @@ $location = get_field( 'location', $happening );
 
 $happenings_page = get_post( pll_get_post( get_page_by_path( 'happening-now' )->ID ) );
 ?>
-<div class="cover-image" <?= post_bg( $happening, 'large' ); ?>></div>
+<div class="cover-image position-md-static" <?= post_bg( $happening, 'large' ); ?>></div>
 
 <div class="cover-card container">
 	<div class="row">
 
-		<div class="cover-content col col-10 col-md-8">
+		<div class="cover-content col col-12 col-lg-8">
 
 			<a href="<?= get_permalink( $happenings_page ); ?>" class="arrow-link back">
 				<?= pll__( 'Back to overview' ); ?>

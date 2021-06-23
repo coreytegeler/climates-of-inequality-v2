@@ -1,7 +1,7 @@
 <?php
 /* Template Name: About */
 get_header();
-$page = $post;
+$page = get_trans( 'about' );
 
 $video = get_field( 'video', $page );
 $team = get_field( 'team', $post );
@@ -80,7 +80,6 @@ $funders = get_field( 'funders_text', $post );
 
 </div>
 
-	
 <?php get_template_part( 'parts/loop', 'team', array(
 	'title' => 'Humanities Action Lab Hub Staff',
 	'field' => 'team',
@@ -105,16 +104,16 @@ $funders = get_field( 'funders_text', $post );
 
 <div class="container" id="container-newsletter">
 
-	<h4><?= get_field( 'newsletter_title' ); ?></h4>
+	<h4><?= get_field( 'newsletter_title', $page ); ?></h4>
 
-	<a href="<?= get_field( 'newsletter_button_url' ); ?>" target="_blank" class="button m-auto">
-		<?= get_field( 'newsletter_button_text' ); ?>
+	<a href="<?= get_field( 'newsletter_button_url', $page ); ?>" target="_blank" class="button m-auto">
+		<?= get_field( 'newsletter_button_text', $page ); ?>
 	</a>
 
 	<div class="row justify-content-center">
 		<div class="col col-12 col-sm-6">
 			<p>
-				<?= get_field( 'newsletter_text' ); ?>
+				<?= get_field( 'newsletter_text', $page ); ?>
 			</p>
 		</div>
 	</div>

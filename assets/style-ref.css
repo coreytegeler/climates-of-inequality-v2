@@ -10811,11 +10811,11 @@ textarea.form-control-lg {
 }
 
 .medium-bg {
-  background-color: #414242;
+  background-color: #414242 !important;
 }
 
 .dark-bg {
-  background-color: #1D2224;
+  background-color: #1D2224 !important;
 }
 
 .white-alpha-bg {
@@ -10827,11 +10827,23 @@ textarea.form-control-lg {
 }
 
 .medium-alpha-bg {
-  background-color: rgba(65, 66, 66, 0.05) !important;
+  background-color: rgba(65, 66, 66, 0.05);
 }
 
 .blue-bg {
   background-color: #0097E2 !important;
+}
+
+@media only screen and (max-width: 768px) {
+  .position-sm-static {
+    position: static !important;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .position-md-static {
+    position: static !important;
+  }
 }
 
 .mt-auto {
@@ -10848,18 +10860,6 @@ textarea.form-control-lg {
 
 .ml-auto {
   margin-left: auto;
-}
-
-@media only screen and (max-width: 768px) {
-  .position-sm-static {
-    position: static;
-  }
-}
-
-@media only screen and (max-width: 992px) {
-  .position-md-static {
-    position: static;
-  }
 }
 
 .mt-xs {
@@ -11555,6 +11555,7 @@ nav#mobile-nav.open .inner {
 }
 @media only screen and (max-width: 768px) {
   .cover {
+    min-height: calc(100vw);
     margin-top: 12rem;
   }
 }
@@ -11562,6 +11563,9 @@ nav#mobile-nav.open .inner {
   .cover {
     margin-top: 9.5rem;
   }
+}
+.cover .page-title {
+  padding: 0;
 }
 
 #cover-slideshow {
@@ -11662,6 +11666,11 @@ nav#mobile-nav.open .inner {
     padding-right: 0 !important;
   }
 }
+@media only screen and (max-width: 768px) {
+  .cover-card {
+    padding-top: 0;
+  }
+}
 
 .cover-header {
   padding-top: 15px;
@@ -11711,6 +11720,11 @@ nav#mobile-nav.open .inner {
   background-color: white;
   box-shadow: 10px 0 0 white, -10px 0 0 white;
   line-height: 1.3em;
+}
+@media only screen and (max-width: 992px) {
+  .highlight-text {
+    height: auto;
+  }
 }
 
 .close {
@@ -11822,7 +11836,6 @@ body.page-template-page-about .wp-block-video {
   background-size: 2em;
   line-height: 1em;
 }
-
 .playing > #home-video-button {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='50' height='50' viewBox='0 0 50 50'%3e%3cdefs%3e%3cclipPath id='a'%3e%3crect width='50' height='50' transform='translate(0)' fill='%23ffffff'/%3e%3c/clipPath%3e%3c/defs%3e%3cg transform='translate(497.974 -468.026)'%3e%3cg transform='translate(-497.974 468.026)' clip-path='url(%23a)'%3e%3cpath d='M25.036,0A25.036,25.036,0,1,1,0,25.036,25.007,25.007,0,0,1,25.036,0M15.661,12.571h6.286V37.5H15.661Zm12.465,0h6.286V37.5H28.125Z' transform='translate(-0.036 -0.036)' fill='%23ffffff' fill-rule='evenodd'/%3e%3c/g%3e%3c/g%3e%3c/svg%3e");
 }
@@ -11853,13 +11866,13 @@ body.page-template-page-about .wp-block-video {
     margin-top: 4rem;
   }
 }
-#cover-local-stories .upcoming-hosts {
+#cover-local-stories .featured-locations {
   position: relative;
 }
-#cover-local-stories .upcoming-hosts .thumb {
+#cover-local-stories .featured-locations .thumb {
   margin-bottom: 0;
 }
-#cover-local-stories .upcoming-hosts .thumb-content {
+#cover-local-stories .featured-locations .thumb-content {
   padding: 0.75rem 0.5rem 0.5rem 0.5rem;
 }
 #cover-local-stories .hn-button {
@@ -11966,41 +11979,39 @@ body.page-template-page-about .wp-block-video {
 /*****************************
 ********HAPPENING NOW*********
 *****************************/
-#cover-happening-now .cover-card {
-  margin-top: calc(100vh - 7rem);
+@media only screen and (max-width: 768px) {
+  #cover-happening-now .cover-card {
+    margin-top: calc(100vh - 12rem);
+  }
 }
-@media only screen and (max-width: 992px) {
+@media only screen and (max-width: 768px) and (max-width: 992px) {
   #cover-happening-now .cover-card {
     margin-top: calc(90vw - 7rem);
   }
 }
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 768px) and (max-width: 768px) {
   #cover-happening-now .cover-card {
     margin-top: calc(100vw - 7rem);
   }
 }
 
 /*****************************
-***********HAPPENING**********
+**********HAPPENING***********
 *****************************/
-.single-happening .cover-card {
-  padding-top: calc(50vh - 7rem);
-}
-
 #cover-happening .cover-card {
   padding-top: 25%;
-}
-@media only screen and (max-width: 768px) {
-  #cover-happening .cover-card {
-    padding-left: 0.8rem !important;
-    padding-right: 0.8rem !important;
-  }
 }
 @media only screen and (max-width: 992px) {
   #cover-happening .cover-card {
     padding-top: 0;
     padding-left: 1.6rem !important;
     padding-right: 1.6rem !important;
+  }
+}
+@media only screen and (max-width: 768px) {
+  #cover-happening .cover-card {
+    padding-left: 0.8rem !important;
+    padding-right: 0.8rem !important;
   }
 }
 
@@ -12189,6 +12200,12 @@ body.page-template-page-about .wp-block-video {
 /*****************************
 *******LEARNING TOGETHER******
 *****************************/
+@media only screen and (max-width: 768px) {
+  #cover-learning-together .highlight-text {
+    height: 100vw;
+  }
+}
+
 nav#nav-page {
   margin: 1.5rem 0;
 }
@@ -12228,6 +12245,12 @@ body.page-template-page-calendar:not(.show-past) .event.past {
   max-height: 250px;
   float: right;
 }
+@media only screen and (max-width: 768px) {
+  #cover-calendar .cover-card > .container > .row {
+    margin-right: -1rem;
+    margin-left: -1rem;
+  }
+}
 
 #toggle-past-button {
   display: table;
@@ -12265,6 +12288,10 @@ body.hide-past #toggle-past-button::before {
 }
 .row .gutter-sizer {
   width: 0.8rem;
+}
+.row > .col > .row {
+  padding-left: 0;
+  padding-right: 0;
 }
 .row.no-gutter {
   margin-right: 0;

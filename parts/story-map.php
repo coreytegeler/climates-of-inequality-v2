@@ -9,13 +9,15 @@ $map_markers = get_field( 'markers', $story );
 		<div class="row no-gutter">
 			<div id="story-map-base" class="col col-12 col-md-8">
 				<img src="<?= $map_image['url'] ?>" alt=""/>
-				<?php if ( $map_markers['mime_type'] === 'image/svg+xml' ) { ?>
+				<?php if ( $map_markers['mime_type'] === 'image/svg+xml' ) {
 
-					<?= file_get_contents( get_attached_file( $map_markers['ID'] ), false, stream_context_create([
-						'ssl' => array( 'allow_self_signed' => true )
-					]) ); ?>
+					file_get_contents(
+						get_attached_file( $map_markers['ID'] ), false, stream_context_create( [
+							'ssl' => array( 'allow_self_signed' => true )
+						] )
+					);
 
-				<?php } ?>
+				} ?>
 			</div>
 
 			<div id="story-map-panel" class="col col-12 col-md-4">

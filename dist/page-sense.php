@@ -1,5 +1,5 @@
 <?php
-/* Template Name: Sense your place */
+/* Template Name: Sense Your Place */
 get_header();
 ?>
 

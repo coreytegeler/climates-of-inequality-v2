@@ -1,4 +1,5 @@
-<?php if( have_rows( $args['field'] ) ) { ?>
+<?php
+if( have_rows( $args['field'] ) ) { ?>
 	<div class="container" id="<?= $args['field']; ?>">
 		<h4><?= pll__( $args['title'] ); ?></h4>
 		<div class="row <?= isset( $args['show_image'] ) ? '' : 'justify-content-center'; ?>">
