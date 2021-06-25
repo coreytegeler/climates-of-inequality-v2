@@ -965,6 +965,7 @@ function get_loop( $req ) {
 	$taxonomies = array( 'happening_theme', 'event_topic', 'session' );
 	$post_fields = array( 'location' );
 	$date_fields = array( 'date', 'start_date' );
+	$actions = array( 'act', 'sense', 'design' );
 
 	$tax_query = array(
 		'relation' => 'AND',
@@ -1023,14 +1024,16 @@ function get_loop( $req ) {
 			'posts_per_page' => -1,
 		);
 
-		if( $req['type'] === 'map' ) {
+		if( in_array( $req['type'], $actions ) ) {
+			$part = 'action';
 			$args['name'] = $params['location'];
 		} else {
+			$part = 'loop';
 			$args['tax_query'] = $tax_query;
 			$args['meta_query'] = $meta_query;
 		}
 
-		get_template_part( 'parts/loop', $req['type'], array(
+		get_template_part( 'parts/' . $part, $req['type'], array(
 			'query' => $args,
 			'params' => $params
 		) );

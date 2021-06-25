@@ -75,7 +75,7 @@ nav {
 		height: $navSpace;
 		position: relative;
 		flex: 1;
-		margin-right: 1px;
+		border-right: 1px solid white;
 		@include sm-text;
 		a {
 			width: 100%;

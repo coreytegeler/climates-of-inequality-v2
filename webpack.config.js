@@ -107,7 +107,7 @@ const config = {
 					archive: [
 						{
 							source: __dirname + "/dist",
-							destination: __dirname + "/coi." + version + ".zip"
+							destination: __dirname + "/coi-v2.zip"
 						},
 					],
 				},

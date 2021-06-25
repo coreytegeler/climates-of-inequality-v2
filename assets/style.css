@@ -11410,7 +11410,7 @@ nav li.menu-item-button {
   height: 5rem;
   position: relative;
   flex: 1;
-  margin-right: 1px;
+  border-right: 1px solid white;
   font-size: 0.87rem;
   line-height: 1.3em;
   font-weight: 200;
@@ -12054,6 +12054,29 @@ body.page-template-page-about .wp-block-video {
   max-width: 13rem;
 }
 
+form.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+form:not(.disabled) button[type=submit] span:last-child, form.disabled button[type=submit] span:first-child {
+  display: none;
+}
+
+.radio-buttons {
+  transition: opacity 200ms ease-in-out;
+}
+.radio-buttons.clicked [aria-checked=false] {
+  opacity: 0.5;
+}
+.radio-buttons.clicked [aria-checked=false] div {
+  opacity: 0.5;
+}
+
+li[role=radio] {
+  cursor: pointer;
+}
+
 #respond {
   display: none;
 }
@@ -12143,10 +12166,6 @@ body.page-template-page-about .wp-block-video {
   background-color: #F5F5F5;
   transition: opacity 200ms ease-in-out;
 }
-#sense-form.disabled {
-  opacity: 0.5;
-  pointer-events: none;
-}
 #sense-form textarea {
   width: 100%;
   background-color: transparent;
@@ -12179,11 +12198,112 @@ body.page-template-page-about .wp-block-video {
 }
 
 .sense-button {
-  cursor: pointer;
   margin: 1rem 0.25rem;
 }
-.sense-button[aria-checked=true] {
-  opacity: 0.5;
+
+/*****************************
+**********ACT LOCALLY*********
+*****************************/
+#act-form .light-bg {
+  margin: 2rem 0 0 0;
+  padding: 0;
+}
+#act-form button.button {
+  width: 100%;
+  margin: 0;
+}
+
+ul.act-vote-buttons {
+  display: table;
+  padding: 3rem 0;
+  margin: auto;
+}
+
+.act-vote-button {
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  float: left;
+  display: flex;
+}
+.act-vote-button div {
+  margin: auto;
+  text-align: center;
+  color: white;
+  font-weight: 300;
+  font-size: 4.5rem;
+}
+.act-vote-button[data-vote=yes] {
+  margin-right: 1rem;
+  background-color: #00a14c;
+}
+.act-vote-button[data-vote=no] {
+  margin-left: 1rem;
+  background-color: #f04600;
+}
+
+#act-vote-graph {
+  width: 100%;
+  height: 70vmin;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 2rem 0 0 0;
+  background-color: #0097E2;
+}
+
+.vote-bar {
+  width: 10rem;
+  margin: 0 2rem;
+  position: relative;
+  border: solid white;
+  border-width: 3px 3px 0 3px;
+}
+.vote-bar.yes {
+  background-color: #00a14c;
+}
+.vote-bar.no {
+  background-color: #f04600;
+}
+
+#act-vote-percents {
+  display: flex;
+  justify-content: center;
+  padding: 1rem 0 2rem 0;
+  border-top: 3px solid white;
+}
+
+.vote-percent {
+  width: 10rem;
+  margin: 0 2rem;
+  text-align: center;
+  color: white;
+  font-size: 2.55rem;
+  line-height: 1.3em;
+  font-weight: 200;
+  letter-spacing: 0.05em;
+}
+
+/*****************************
+**DESIGN YOUR GREEN NEW DEAL**
+*****************************/
+#design-form .light-bg {
+  padding-left: 0;
+  padding-right: 0;
+  padding-bottom: 0;
+}
+
+.design-vote-buttons {
+  font-size: 2.55rem;
+  line-height: 1.3em;
+  font-weight: 200;
+  letter-spacing: 0.05em;
+  padding-left: 2em;
+  margin: 0 0 2rem 0;
+}
+
+.design-vote-button {
+  margin: 0 0 0.5rem 0;
 }
 
 /*****************************

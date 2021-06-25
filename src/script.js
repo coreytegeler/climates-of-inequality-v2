@@ -284,17 +284,23 @@ jQuery(document).ready(function($) {
 	});
 
 
+
+	/*****************************
+	**********TAKE ACTION*********
+	*****************************/
+
+	const wpForm = document.querySelector("#respond .comment-form");
+
+
 	/*****************************
 	***********SENSE MAP**********
 	*****************************/
 
-	const senseMap = document.querySelector("#sense-map");
+	const senseMap = document.querySelector("#sense-map"),
+				userMarker = document.querySelector("#user-marker");
 	if(senseMap) {
 		const senseForm = document.querySelector("#sense-form"),
-					location = senseForm.dataset.location,
-					wpForm = document.querySelector(`#comment-form-${location}`);
-
-		const userMarker = senseMap.querySelector("#user-marker");
+					location = senseForm.dataset.location;
 		senseMap.addEventListener("mousemove", function(e) {
 			if(userMarker.classList.contains("placed") || userMarker.classList.contains("submitted")) {
 				return;
@@ -387,43 +393,67 @@ jQuery(document).ready(function($) {
 				senseTextarea.value = this.value;
 			});
 		}
+	}
 
-		const senseButtons = document.querySelectorAll(".sense-button"),
-					senseSelect = document.querySelector("[data-name=\"sense\"] select");
-		senseButtons.forEach((senseButton) => {
-			senseButton.addEventListener("click", (e) => {
-				if(senseButton.getAttribute("aria-checked") === "true") {
-					senseButton.setAttribute("aria-checked", "false");
-					senseSelect.value = null;
-					userMarker.dataset.sense = null;
+	/*****************************
+	*******TAKE ACTION CONT*******
+	*****************************/
+
+	const radioButtonsUl = document.querySelector(".radio-buttons");
+	if(radioButtonsUl) {
+		const radioButtons = radioButtonsUl.querySelectorAll("li"),
+					fieldName = radioButtonsUl.dataset.field,
+					formSelect = document.querySelector(`[data-name="${fieldName}"] select`);
+
+		radioButtons.forEach((radioButton) => {
+			radioButton.addEventListener("click", (e) => {
+
+				radioButton.parentElement.classList.add("clicked");
+
+				if(radioButton.getAttribute("aria-checked") === "true") {
+					radioButton.setAttribute("aria-checked", "false");
+					formSelect.value = null;
+					if(userMarker) {
+						userMarker.dataset.sense = null;
+					}
 				} else {
-					senseButton.setAttribute("aria-checked", "true");
-					senseSelect.value = senseButton.dataset.sense;
-					userMarker.dataset.sense = senseButton.dataset.sense;
+					radioButton.setAttribute("aria-checked", "true");
+					formSelect.value = radioButton.dataset.sense;
+					if(userMarker) {
+						userMarker.dataset.sense = radioButton.dataset.sense;
+					}
 				}
-				senseButtons.forEach((sibling) => {
-					if(sibling !== senseButton) {
+				radioButtons.forEach((sibling) => {
+					if(sibling !== radioButton) {
 						sibling.setAttribute("aria-checked", "false");
 					}
 				});
 			});
 		});
+	}
 
-		senseForm.addEventListener("submit", (e) => {
+	const actionForm = document.querySelector(".action-form");
+	if(actionForm) {
+		actionForm.addEventListener("submit", (e) => {
 			e.preventDefault();
-			userMarker.classList.add("submitted");
 			submitActionForm(wpForm);
-			disabledInputs(senseForm);
+			disabledInputs(actionForm);
 			disabledInputs(wpForm);
+
+			if(userMarker) {
+				userMarker.classList.add("submitted");
+			}
 		});
 	}
 
+
 	const disabledInputs = (form) => {
-		const fields = form.querySelectorAll("input, textarea, select, button")
-		fields.forEach((field) => {
-			field.setAttribute("disabled", "true");
+		const fieldsets = actionForm.querySelectorAll("fieldset")
+		fieldsets.forEach((fieldset) => {
+			fieldset.setAttribute("disabled", "true");
 		});
-		form.classList.add("disabled");
+		console.log(actionForm);
+		actionForm.classList.add("disabled");
 	};
 
 	const submitActionForm = (form) => {
